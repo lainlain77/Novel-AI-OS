@@ -1,35 +1,461 @@
-project:
-  name: Novel-AI-OS
-  version: V5
-  status: architecture_foundation
-
-principles:
-  - universal_kernel
-  - genre_independent
-  - platform_independent
-  - composable_capabilities
-  - author_controls_canon
-
-modules:
-  architecture: docs/architecture/
-  kernel: docs/kernel/
-  planning: docs/planning/
-  context: docs/context/
-  capability: docs/capability/
-  ai: docs/ai/
-  ui: docs/ui/
-  technical: docs/technical/
-
-memory:
-  discussions: memory/discussions/
-  handoffs: memory/handoffs/
-
-status:
-  completed:
-    - core_principles
-    - repository_memory_design
-  in_progress:
-    - full_architecture_documentation
-    - context_engine_research
-  pending:
-    - implementation
+{
+  "schema_version": 1,
+  "project": {
+    "name": "Novel-AI-OS",
+    "design_label": "V5 (historical label; release unverified)",
+    "phase": "repository_memory_foundation",
+    "product_implementation": "not_started",
+    "updated": "2026-09-09",
+    "audited_baseline": "a4975d94333375076c49e79076776bf954bc1929",
+    "historical_coverage": "partial",
+    "independent_handoff_test": "pending"
+  },
+  "format": "JSON-compatible YAML 1.2; parsed without third-party dependencies",
+  "startup_order": [
+    "AI_START_HERE.md",
+    "PROJECT_STATE.md",
+    "CONTEXT_MANIFEST.yaml",
+    "docs/architecture/ARCHITECTURE_PRINCIPLES.md",
+    "SETTLED_DECISIONS.md",
+    "adr/README.md",
+    "AI_COLLABORATION_PROTOCOL.md",
+    "memory/SOURCE_REGISTER.md",
+    "memory/handoffs/LATEST.md",
+    "planning/CURRENT_TASK.md",
+    "planning/OPEN_QUESTIONS.md"
+  ],
+  "principles": [
+    {
+      "id": "P1",
+      "name": "universal_kernel",
+      "adr": "ADR-001"
+    },
+    {
+      "id": "P2",
+      "name": "platform_independent",
+      "adr": "ADR-002"
+    },
+    {
+      "id": "P3",
+      "name": "genre_not_architecture",
+      "adr": "ADR-003"
+    },
+    {
+      "id": "P4",
+      "name": "composable_capabilities",
+      "adr": "ADR-004"
+    },
+    {
+      "id": "P5",
+      "name": "library_canon_isolation",
+      "adr": "ADR-006"
+    },
+    {
+      "id": "P6",
+      "name": "no_silent_canon_changes",
+      "adr": "ADR-005"
+    }
+  ],
+  "sources": [
+    {
+      "id": "SRC-001",
+      "type": "current_user_instruction",
+      "coverage": "explicit_task_and_principles",
+      "path": "memory/SOURCE_REGISTER.md"
+    },
+    {
+      "id": "SRC-002",
+      "type": "bounded_conversation_preview",
+      "coverage": "partial_history",
+      "path": "memory/SOURCE_REGISTER.md"
+    },
+    {
+      "id": "SRC-003",
+      "type": "repository_snapshot",
+      "coverage": "six_files_at_audited_baseline",
+      "path": "memory/SOURCE_REGISTER.md"
+    },
+    {
+      "id": "SRC-004",
+      "type": "current_session_analysis",
+      "coverage": "documented_proposals_and_audit",
+      "path": "memory/SOURCE_REGISTER.md"
+    }
+  ],
+  "adrs": [
+    {
+      "id": "ADR-000",
+      "path": "adr/ADR-000-project-memory.md",
+      "status": "accepted",
+      "sources": [
+        "SRC-001",
+        "SRC-002",
+        "SRC-003"
+      ],
+      "confirmed_by": "SRC-001"
+    },
+    {
+      "id": "ADR-001",
+      "path": "adr/ADR-001-universal-kernel.md",
+      "status": "accepted",
+      "sources": [
+        "SRC-001",
+        "SRC-003"
+      ],
+      "confirmed_by": "SRC-001"
+    },
+    {
+      "id": "ADR-002",
+      "path": "adr/ADR-002-platform-independent.md",
+      "status": "accepted",
+      "sources": [
+        "SRC-001",
+        "SRC-003"
+      ],
+      "confirmed_by": "SRC-001"
+    },
+    {
+      "id": "ADR-003",
+      "path": "adr/ADR-003-genre-not-architecture.md",
+      "status": "accepted",
+      "sources": [
+        "SRC-001",
+        "SRC-002",
+        "SRC-003"
+      ],
+      "confirmed_by": "SRC-001"
+    },
+    {
+      "id": "ADR-004",
+      "path": "adr/ADR-004-composable-capabilities.md",
+      "status": "accepted",
+      "sources": [
+        "SRC-001",
+        "SRC-002",
+        "SRC-003"
+      ],
+      "confirmed_by": "SRC-001"
+    },
+    {
+      "id": "ADR-005",
+      "path": "adr/ADR-005-canon-control.md",
+      "status": "accepted",
+      "sources": [
+        "SRC-001",
+        "SRC-003"
+      ],
+      "confirmed_by": "SRC-001"
+    },
+    {
+      "id": "ADR-006",
+      "path": "adr/ADR-006-library-instance-separation.md",
+      "status": "accepted",
+      "sources": [
+        "SRC-001",
+        "SRC-002"
+      ],
+      "confirmed_by": "SRC-001"
+    },
+    {
+      "id": "ADR-007",
+      "path": "adr/ADR-007-blueprint-derivation.md",
+      "status": "proposed",
+      "sources": [
+        "SRC-002",
+        "SRC-004"
+      ],
+      "confirmed_by": null
+    },
+    {
+      "id": "ADR-008",
+      "path": "adr/ADR-008-memory-first-architecture.md",
+      "status": "proposed",
+      "sources": [
+        "SRC-002",
+        "SRC-004"
+      ],
+      "confirmed_by": null
+    }
+  ],
+  "current_task": {
+    "id": "T002",
+    "status": "ready",
+    "path": "planning/CURRENT_TASK.md"
+  },
+  "open_questions": {
+    "path": "planning/OPEN_QUESTIONS.md",
+    "ids": [
+      "Q001",
+      "Q002",
+      "Q003",
+      "Q004",
+      "Q005",
+      "Q006",
+      "Q007",
+      "Q008",
+      "Q009",
+      "Q010"
+    ]
+  },
+  "latest_handoff": "memory/handoffs/LATEST.md",
+  "routes": {
+    "architecture": [
+      "docs/architecture/SYSTEM_OVERVIEW.md",
+      "docs/architecture/ARCHITECTURE_PRINCIPLES.md",
+      "adr/ADR-001-universal-kernel.md",
+      "adr/ADR-002-platform-independent.md",
+      "adr/ADR-003-genre-not-architecture.md",
+      "memory/discussions/2026-09-09-architecture-origin.md",
+      "docs/architecture/ACCEPTANCE_SCENARIOS.md"
+    ],
+    "kernel": [
+      "docs/kernel/STORY_KERNEL.md",
+      "adr/ADR-001-universal-kernel.md",
+      "GLOSSARY.md",
+      "docs/architecture/ACCEPTANCE_SCENARIOS.md"
+    ],
+    "capability": [
+      "docs/capability/CAPABILITY_SYSTEM.md",
+      "adr/ADR-003-genre-not-architecture.md",
+      "adr/ADR-004-composable-capabilities.md",
+      "memory/discussions/2026-09-09-genre-capability.md"
+    ],
+    "library": [
+      "docs/library/LIBRARY_CANON.md",
+      "adr/ADR-006-library-instance-separation.md",
+      "adr/ADR-007-blueprint-derivation.md",
+      "memory/discussions/2026-09-09-creative-library.md"
+    ],
+    "context": [
+      "docs/context/CONTEXT_ENGINE.md",
+      "docs/kernel/STORY_KERNEL.md",
+      "adr/ADR-008-memory-first-architecture.md",
+      "memory/discussions/2026-09-09-context-engine.md"
+    ],
+    "planning": [
+      "docs/planning/PLANNING_SYSTEM.md",
+      "docs/ai/AI_WORKFLOW.md",
+      "planning/OPEN_QUESTIONS.md"
+    ],
+    "canon_and_ai": [
+      "docs/ai/AI_WORKFLOW.md",
+      "adr/ADR-005-canon-control.md",
+      "docs/library/LIBRARY_CANON.md",
+      "docs/architecture/ACCEPTANCE_SCENARIOS.md"
+    ],
+    "project_memory": [
+      "docs/memory/MEMORY_SYSTEM.md",
+      "adr/ADR-000-project-memory.md",
+      "memory/SOURCE_REGISTER.md",
+      "memory/discussions/2026-09-09-ai-handoff.md",
+      "PROJECT_HISTORY.md",
+      "docs/quality/HANDOFF_ACCEPTANCE.md"
+    ],
+    "history": [
+      "memory/SOURCE_REGISTER.md",
+      "PROJECT_HISTORY.md",
+      "memory/discussions/README.md",
+      "CHANGELOG.md"
+    ],
+    "technical": [
+      "docs/technical/IMPLEMENTATION_BOUNDARIES.md",
+      "planning/OPEN_QUESTIONS.md"
+    ],
+    "handoff": [
+      "AI_COLLABORATION_PROTOCOL.md",
+      "memory/handoffs/LATEST.md",
+      "memory/handoffs/SESSION_TEMPLATE.md",
+      "planning/CURRENT_TASK.md",
+      "planning/ROADMAP.md",
+      "docs/quality/HANDOFF_ACCEPTANCE.md",
+      "docs/quality/AUDIT_LOG.md",
+      "scripts/validate-memory.mjs"
+    ]
+  },
+  "documents": [
+    {
+      "path": "AGENTS.md",
+      "authority": "normative"
+    },
+    {
+      "path": "AI_COLLABORATION_PROTOCOL.md",
+      "authority": "normative"
+    },
+    {
+      "path": "AI_START_HERE.md",
+      "authority": "normative"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "CONTEXT_MANIFEST.yaml",
+      "authority": "normative"
+    },
+    {
+      "path": "GLOSSARY.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "PROJECT_HISTORY.md",
+      "authority": "provenance"
+    },
+    {
+      "path": "PROJECT_STATE.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "README.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "SETTLED_DECISIONS.md",
+      "authority": "normative"
+    },
+    {
+      "path": "adr/ADR-000-project-memory.md",
+      "authority": "accepted_decision"
+    },
+    {
+      "path": "adr/ADR-001-universal-kernel.md",
+      "authority": "accepted_decision"
+    },
+    {
+      "path": "adr/ADR-002-platform-independent.md",
+      "authority": "accepted_decision"
+    },
+    {
+      "path": "adr/ADR-003-genre-not-architecture.md",
+      "authority": "accepted_decision"
+    },
+    {
+      "path": "adr/ADR-004-composable-capabilities.md",
+      "authority": "accepted_decision"
+    },
+    {
+      "path": "adr/ADR-005-canon-control.md",
+      "authority": "accepted_decision"
+    },
+    {
+      "path": "adr/ADR-006-library-instance-separation.md",
+      "authority": "accepted_decision"
+    },
+    {
+      "path": "adr/ADR-007-blueprint-derivation.md",
+      "authority": "proposed_design"
+    },
+    {
+      "path": "adr/ADR-008-memory-first-architecture.md",
+      "authority": "proposed_design"
+    },
+    {
+      "path": "adr/README.md",
+      "authority": "normative"
+    },
+    {
+      "path": "docs/ai/AI_WORKFLOW.md",
+      "authority": "proposed_design"
+    },
+    {
+      "path": "docs/architecture/ACCEPTANCE_SCENARIOS.md",
+      "authority": "proposed_design"
+    },
+    {
+      "path": "docs/architecture/ARCHITECTURE_PRINCIPLES.md",
+      "authority": "normative"
+    },
+    {
+      "path": "docs/architecture/SYSTEM_OVERVIEW.md",
+      "authority": "proposed_design"
+    },
+    {
+      "path": "docs/capability/CAPABILITY_SYSTEM.md",
+      "authority": "proposed_design"
+    },
+    {
+      "path": "docs/context/CONTEXT_ENGINE.md",
+      "authority": "proposed_design"
+    },
+    {
+      "path": "docs/kernel/STORY_KERNEL.md",
+      "authority": "proposed_design"
+    },
+    {
+      "path": "docs/library/LIBRARY_CANON.md",
+      "authority": "proposed_design"
+    },
+    {
+      "path": "docs/memory/MEMORY_SYSTEM.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "docs/planning/PLANNING_SYSTEM.md",
+      "authority": "proposed_design"
+    },
+    {
+      "path": "docs/quality/AUDIT_LOG.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "docs/quality/HANDOFF_ACCEPTANCE.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "docs/technical/IMPLEMENTATION_BOUNDARIES.md",
+      "authority": "proposed_design"
+    },
+    {
+      "path": "memory/SOURCE_REGISTER.md",
+      "authority": "provenance"
+    },
+    {
+      "path": "memory/discussions/2026-09-09-ai-handoff.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "memory/discussions/2026-09-09-architecture-origin.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "memory/discussions/2026-09-09-context-engine.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "memory/discussions/2026-09-09-creative-library.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "memory/discussions/2026-09-09-genre-capability.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "memory/discussions/README.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "memory/handoffs/LATEST.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "memory/handoffs/SESSION_TEMPLATE.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "planning/CURRENT_TASK.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "planning/OPEN_QUESTIONS.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "planning/ROADMAP.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "scripts/validate-memory.mjs",
+      "authority": "tool"
+    }
+  ]
+}
