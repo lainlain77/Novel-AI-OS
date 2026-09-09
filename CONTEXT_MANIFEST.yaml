@@ -1,0 +1,35 @@
+project:
+  name: Novel-AI-OS
+  version: V5
+  status: architecture_foundation
+
+principles:
+  - universal_kernel
+  - genre_independent
+  - platform_independent
+  - composable_capabilities
+  - author_controls_canon
+
+modules:
+  architecture: docs/architecture/
+  kernel: docs/kernel/
+  planning: docs/planning/
+  context: docs/context/
+  capability: docs/capability/
+  ai: docs/ai/
+  ui: docs/ui/
+  technical: docs/technical/
+
+memory:
+  discussions: memory/discussions/
+  handoffs: memory/handoffs/
+
+status:
+  completed:
+    - core_principles
+    - repository_memory_design
+  in_progress:
+    - full_architecture_documentation
+    - context_engine_research
+  pending:
+    - implementation
