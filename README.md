@@ -31,4 +31,3 @@
 仓库根目录执行 `node scripts/validate-memory.mjs`；检查器自身的故障用例执行 `node scripts/validate-memory.mjs --self-test`。需要 Node.js；不需要安装第三方包。脚本检查资料结构，人工验收负责判断内容是否足以接手。这里的脚本属于文档维护工具，不代表创作产品已经实现。
 
 V5 是既有资料中的设计称呼，尚未核实存在 V1–V4 的完整记录或 V5 软件发布。见 [来源登记](memory/SOURCE_REGISTER.md)。
-
