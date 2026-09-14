@@ -1,39 +1,36 @@
 # Latest Handoff
 
 Updated: 2026-09-14
-Completed-task: T002
-Next-task: T003
+Completed-task: T003
+Next-task: T004
 Target: lainlain77/Novel-AI-OS / main
-Starting-baseline: 769ba3bb89bf29abbba6df5de3dd8a8cb07a0083
+Starting-baseline: 0a3e275b672ad9eb016d5d94b59aac20f3f68981
 
-## 本轮目标和结果
+## 本轮结果
 
-用户要求不再局限于单份报告，而是全面整理 V5 本体、疑问、后续、扩展和已有研究，并授权本轮决定组织与首个实现基线。
+T003 已把纸面契约转成第一份可运行的创作核心。`src/store.ts` 使用 Node 内置 SQLite/FTS5 实现 story/branch/revision、结构化 scope、知识与秘密 Policy Gate、词法检索、token 预算、Context Packet、ChangeProposal、乐观并发、原子提交和递归派生失效。
 
-本轮新增：
+`src/fixture.ts` 固定两部作品与两个分支，包含同名顾沉、循环规则、世界真相、顾沉误信、林晚知识、作者秘密、读者线索、未来揭示和旧摘要。`tests/context-canon.test.ts` 的 10 项回归全部通过。
 
-- [V5 总体蓝图](../../docs/architecture/V5_MASTER_BLUEPRINT.md)：产品本体、原则、模块、数据、流程、技术、评估、反模式、路线和扩展；
-- [核心契约](../../docs/architecture/CORE_CONTRACTS.md)：StoryRecord、Scope/Timeline、Knowledge、Proposal、Context Packet 与 S1–S6 纸面演练；
-- [Context Engine 深度研究](../../docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md)：截至 2026-09-09 的论文、架构、产品实践、成本和评估；
-- [七技能审计与融合 V1.0](../../docs/research/SEVEN_SKILLS_AUDIT_AND_FUSION_V1.md)：吸收/改造/拒绝、Skill 契约和 V1.1 原包复核清单；
-- [作者工作流](../../docs/product/AUTHOR_WORKFLOWS.md)：构思、规划、写作、Canon Inbox、导入、审查、Library 和恢复。
+新增 [T003 实现记录](../../docs/technical/VERTICAL_SLICE_T003.md)。ADR-008 根据运行证据转 accepted；新增并接受 ADR-009 Canon transaction、ADR-010 knowledge gate、ADR-011 SQLite/FTS5 首版基线。依据是用户已授权本轮全面整理并决定实现基线，且 T003 提供了可复核代码与测试。
 
-T002 的纸面契约完成，没有发现需要推翻 P1–P6 的问题。下一步 T003 将其转成 schema、fixture 和最小 Context/Canon 纵向切片。
+## 已验证行为
 
-## 决定与状态
+- story 与 branch 硬隔离，另一作品同名人物和另一分支事实不进入 packet；
+- 人物只得到 public 与自己的 Knowledge，读者受 narrative cursor 限制，作者秘密需要显式 grant；
+- proposal 保存不写 Canon，应用成功才递增 revision；
+- stale approval 被拒绝，多项失败整体回滚；
+- 源记录替换后依赖摘要标 stale；
+- Context Packet 保留来源、revision、选择原因、预算、遗漏和策略/内容指纹。
 
-P1–P6 继续 accepted。新增模块字段和流程为 proposed design baseline；Context 外部研究为 research completed，V5 运行评估仍 pending；七技能为 reconstructed audit，原包逐文件核验待 V1.1。
+## 限制
 
-首个工程切片采用本地优先、TypeScript 模块化单体、SQLite + FTS5、内容寻址原文和可替换 Model Adapter。向量、图数据库、多 Agent、云同步和平台适配后置，以评估结果决定。
-
-## 已知限制
-
-仓库没有创作应用代码。原对话附件只剩占位记录，七技能文件/hash/脚本和许可证未直接核验。Context 推荐方案未用 V5 语料跑分。Q001、Q002、Q007、Q010–Q014 保留来源、决策、评估、隐私、Skill 治理和协作问题。
+当前只用小型确定性 fixture 和近似 token 计数。没有真实模型、完整编辑器、内容寻址大文本、百万字语料、向量检索、图投影、云同步或平台发布。FTS5 基线不证明语义召回达标。Q002/Q005/Q009/Q011/Q012/Q014 保留这些边界。
 
 ## 下一步
 
-执行 [CURRENT_TASK T003](../../planning/CURRENT_TASK.md)。先做 deterministic schema、Policy Gate、fixture、proposal transaction 和派生失效，再接模型。必须先通过跨故事污染、秘密泄漏、误信、过时批准和失败恢复用例。
+执行 [T004](../../planning/CURRENT_TASK.md)：先定义 Model Adapter 和 deterministic fake，保证模型只能返回 Draft/ChangeProposal；再实现最小作者工作台，显示 Context Inspector、草稿、Canon diff、接受/拒绝与 stale 提示。真实云模型连接和正文外发策略后置到明确配置。
 
-## 恢复与发布核验
+## 恢复与核验
 
-先比较远端 main 与本交接对应提交，不覆盖并行修改。仓库根运行 `node scripts/validate-memory.mjs`；若检查器修改，再运行 `--self-test`。只有 GitHub 上可读取到本轮提交和新增文件时，才能称本轮已同步。
+仓库根运行 `npm run validate`，应同时通过项目记忆结构检查和 10 项运行测试；`npm run demo` 输出顾沉 POV packet。发布前比较远端 main，不覆盖并行修改。只有 GitHub 上可读取到提交和文件时才能报告已同步。

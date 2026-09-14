@@ -1,41 +1,38 @@
 # Current Task
 
 Updated: 2026-09-14
-Task-ID: T003
+Task-ID: T004
 Status: ready
-Title: Context/Canon 纵向切片的可执行规格与评估夹具
+Title: 可替换 Model Adapter 与最小作者工作台
 
 ## 接手点
 
-T002 已完成纸面契约与 S1–S6 演练，见 [CORE_CONTRACTS](../docs/architecture/CORE_CONTRACTS.md)。V5 总体设计、Context Engine 研究、七技能融合和作者工作流已形成可追溯基线。当前没有产品代码；本任务把设计转成可运行的最小实现规格。
+T003 已交付可运行的 Context/Canon 纵向切片，见 [实现与验证](../docs/technical/VERTICAL_SLICE_T003.md)。代码已覆盖结构化 Policy Gate、FTS5、Context Packet、proposal 保存/应用、过时拒绝、原子回滚和派生失效；10 项回归全部通过。
 
 ## 目标与范围
 
-定义并实现或准备实现一个本地优先纵向切片：作品/分支/Scene → 版本化 Canon/Knowledge → Task Contract → Context Packet → Draft/Change Proposal → 作者确认 → 原子提交与派生失效。
+把确定性核心接到作者可观察的端到端流程：选择任务与 POV → 编译 Context Packet → 调用可替换 Model Adapter 或 deterministic fake → 显示草稿、来源、遗漏和权限 → 生成结构化 ChangeProposal → 接受/拒绝 → 查看 Canon revision。
 
-本任务不实现完整编辑器、GraphRAG、多 Agent、云同步或平台适配。首个技术基线为 TypeScript 模块化单体、SQLite + FTS5、内容寻址原文和可替换 Model Adapter。
-
-前置阅读：[总体蓝图](../docs/architecture/V5_MASTER_BLUEPRINT.md)、[核心契约](../docs/architecture/CORE_CONTRACTS.md)、[Context 研究](../docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md)、[作者工作流](../docs/product/AUTHOR_WORKFLOWS.md)、Q002/Q004/Q005/Q008/Q011。
+首版界面用于验证工作流，不承担完整编辑器、排版或发布。真实模型不是完成前提；必须先用 fake adapter 跑通，并保证模型输出没有直接数据库写权限。
 
 ## 可立即执行的步骤
 
-1. 将 StoryRecord、Scope/Timeline、Knowledge、ChangeProposal、ContextPacket 转成版本化 schema 草案和迁移策略。
-2. 建立两部作品、两个分支、回忆/循环、同名人物、误信、作者秘密和旧摘要的最小 fixture。
-3. 定义 Task Contract、Policy Gate、结构化查询、FTS 检索、预算装配和 Context Inspector 输出。
-4. 实现或原型化 proposal stale 检查、原子提交、失败恢复和派生依赖失效。
-5. 跑 S1–S6 与 Q011 指标，记录必须包含、禁止包含、来源正确性、token、延迟和失败样本。
-6. 根据结果为 Canon transaction、knowledge gate 和首版存储/检索分别提出新的 ADR，并在创建后分配正式编号。
+1. 定义 Model Adapter 输入输出、模型元数据、token usage、错误和取消契约。
+2. 实现 deterministic fake adapter，并将任何模型结果限制为 Draft 或 ChangeProposal。
+3. 建立本地 API/应用服务，复用现有 NovelStore，不让界面直接写 Canon 表。
+4. 做最小作者工作台：任务/POV、Context Inspector、草稿、Canon diff、接受/拒绝、stale 提示。
+5. 用现有 fixture 跑人物 POV、读者分析、作者秘密授权和旧批准四条端到端路径。
+6. 记录界面选择、运行方式、截图或可复现演示、测试和已知限制；同步项目记忆。
 
-## 产出与完成标准
+## 完成标准
 
-- 可执行或可直接编码的 schema/接口规格，字段与 CORE_CONTRACTS 可追踪；
-- 可版本化的评估 fixture 和标准答案；
-- 最小检索/装配与 Canon 提交流程可演示；
-- S1–S6 无跨故事污染、秘密泄漏或未确认写入；
-- 性能/成本结果注明模型、版本、硬件和日期；
-- 新增代码与文档被 Manifest 登记，结构检查和相关测试通过；
-- PROJECT_STATE、OPEN_QUESTIONS、ROADMAP、LATEST 和 CHANGELOG 同步。
+- fake adapter 下端到端流程可运行且无需外部账号；
+- 模型层只能返回草稿/提案，不能直接改变 Canon；
+- Context Inspector 显示来源 revision、入选原因、遗漏、预算和秘密 grant；
+- 作者接受后 revision 才变化，拒绝和 stale 均不写入；
+- 关键行为有自动测试，项目检查通过；
+- PROJECT_STATE、ROADMAP、LATEST、CHANGELOG、Manifest 和相关问题同步。
 
-## 决策与停止条件
+## 停止条件
 
-首版先验证正确性、隔离和可追溯，再优化召回与速度。若 SQLite/FTS 在标准任务上不能满足门槛，记录失败后再比较向量或图扩展。模型不可用不阻止完成 deterministic fixture、Policy Gate 和存储事务。
+真实云模型接入涉及供应商、密钥、费用和正文外发时，先完成 adapter 和 fake 流程，再把具体连接作为 Q012 的显式配置决定。不得为了界面速度绕过 ADR-009/010。

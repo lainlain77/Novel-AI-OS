@@ -1,9 +1,9 @@
 # ADR-008: 项目记忆与运行时记忆边界
 
-Status: proposed
+Status: accepted
 Recorded: 2026-09-09
-Sources: SRC-002, SRC-004
-Decision authority: 本轮设计提案，尚无作者批准
+Sources: SRC-002, SRC-004, SRC-005
+Decision authority: 用户授权全面整理并决定实现基线；T003 提供运行证据
 Supersedes: none
 
 ## 背景
@@ -18,7 +18,7 @@ Supersedes: none
 
 ## 决定或提案
 
-提议明确区分项目记忆、Library、Story Canon、工作草稿和派生摘要/索引，用来源、版本和范围连接；暂不决定数据库数目或检索技术。
+明确区分项目记忆、Library、Story Canon、工作草稿和派生摘要/索引，用来源、版本和范围连接。源记录具有权威状态；摘要和索引是可失效派生资料。数据库与首版检索技术由 ADR-011 决定，但不改变这些逻辑边界。
 
 ## 理由
 
@@ -30,7 +30,7 @@ Supersedes: none
 
 ## 未决事项与重审条件
 
-Q002/Q005/Q008：先验证跨故事隔离、角色误信、Canon 更新后的旧摘要和小预算检索，再形成可批准的实现方案。
+T003 已验证跨故事/分支隔离、角色误信、Canon 更新后的旧摘要失效和小预算装配。复杂推断、长篇规模与缓存重建继续由 Q002/Q005/Q011 追踪。
 
 有新证据或作者改变目标时可重审，不能静默改写旧决定。
 

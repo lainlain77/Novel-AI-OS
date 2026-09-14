@@ -1,6 +1,6 @@
 # ADR 索引
 
-ADR 状态表示决策权威，不表示代码完成。accepted 要有作者确认依据；本轮 ADR-000–006 记录用户已明确的目标和原则，替代项比较与影响说明含本轮整理。ADR-007/008 是新增提案。
+ADR 状态表示决策权威，不表示完整产品完成。accepted 要有作者确认或明确授权依据；ADR-008–011 依据用户授权的实现基线和 T003 运行证据定案。ADR-007 仍是提案。
 
 | ADR | 状态 | 内容 |
 | --- | --- | --- |
@@ -12,7 +12,10 @@ ADR 状态表示决策权威，不表示代码完成。accepted 要有作者确�
 | [ADR-005](ADR-005-canon-control.md) | accepted | 作者控制 Canon |
 | [ADR-006](ADR-006-library-instance-separation.md) | accepted | Library 与故事实例隔离 |
 | [ADR-007](ADR-007-blueprint-derivation.md) | proposed | Blueprint 与派生关系 |
-| [ADR-008](ADR-008-memory-first-architecture.md) | proposed | 项目记忆与运行时记忆边界 |
+| [ADR-008](ADR-008-memory-first-architecture.md) | accepted | 项目记忆与运行时记忆边界 |
+| [ADR-009](ADR-009-canon-transaction.md) | accepted | Canon 提案的修订绑定与原子事务 |
+| [ADR-010](ADR-010-knowledge-gate.md) | accepted | 知识与秘密硬过滤先于检索排序 |
+| [ADR-011](ADR-011-local-storage-retrieval.md) | accepted | 本地 SQLite 与 FTS5 首版基线 |
 
 ## 状态维护
 

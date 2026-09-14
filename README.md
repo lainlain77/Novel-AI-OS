@@ -1,6 +1,6 @@
 # Novel-AI-OS
 
-小说 AI 创作操作系统：支持世界构建、故事规划、长篇连续性、AI 协作和创作知识管理。当前以项目记忆和架构设计为主，尚未实现小说创作应用。
+小说 AI 创作操作系统：支持世界构建、故事规划、长篇连续性、AI 协作和创作知识管理。当前已有 Context/Canon 核心纵向切片，完整创作应用和界面尚未实现。
 
 目标是让任何具备仓库读取能力的 AI、新对话或协作者，从仓库恢复目标、决定、原因、进度和下一步。历史材料缺失时，必须能识别缺口；不能把摘要冒充完整历史。
 
@@ -23,11 +23,12 @@
 | Context Engine 的完整研究 | [研究报告](docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md)、[模块规格](docs/context/CONTEXT_ENGINE.md) |
 | 七技能怎样融合 | [七技能审计与融合 V1.0](docs/research/SEVEN_SKILLS_AUDIT_AND_FUSION_V1.md) |
 | 作者实际怎样操作 | [作者工作流](docs/product/AUTHOR_WORKFLOWS.md) |
+| 首个可运行实现 | [T003 实现与验证](docs/technical/VERTICAL_SLICE_T003.md)、`src/`、`tests/` |
 | 机器怎样按需读取 | [Context Manifest](CONTEXT_MANIFEST.yaml) |
 | 如何证明可以接手 | [接手验收](docs/quality/HANDOFF_ACCEPTANCE.md)、[审计记录](docs/quality/AUDIT_LOG.md) |
 
 ## 本地自检
 
-仓库根目录执行 `node scripts/validate-memory.mjs`；检查器自身的故障用例执行 `node scripts/validate-memory.mjs --self-test`。需要 Node.js；不需要安装第三方包。脚本检查资料结构，人工验收负责判断内容是否足以接手。这里的脚本属于文档维护工具，不代表创作产品已经实现。
+仓库根目录执行 `npm run validate` 可同时检查项目记忆和 Context/Canon 回归；`npm run demo` 可查看人物 POV 的 Context Packet。需要 Node.js 24；不需要安装第三方包。完整创作产品仍在开发中。
 
 V5 是既有资料中的设计称呼，尚未核实存在 V1–V4 的完整记录或 V5 软件发布。见 [来源登记](memory/SOURCE_REGISTER.md)。

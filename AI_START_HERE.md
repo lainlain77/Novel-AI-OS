@@ -1,6 +1,6 @@
 # AI START HERE
 
-你正在接手 Novel-AI-OS（小说 AI 创作操作系统）。先恢复项目状态，再开始工作。当前为记忆基础建设及架构整理阶段，尚无创作产品实现；V5 仅是沿用的设计称呼。
+你正在接手 Novel-AI-OS（小说 AI 创作操作系统）。先恢复项目状态，再开始工作。当前已有第一份 Context/Canon 可运行纵向切片，编辑器和完整创作产品尚未实现；V5 仍是设计称呼。
 
 ## 从零接手
 
@@ -18,7 +18,7 @@
 
 再通过 Manifest 的 routes 读取相关 ADR、讨论和规格。处理架构变更时必须读取该原则对应 ADR 的全文；不需要在所有任务中重读全部历史。
 
-Context、七技能、核心契约和作者流程已形成专题基线，分别位于 docs/research、docs/architecture 和 docs/product。研究完成不等于产品实现；当前实现入口始终以 CURRENT_TASK 为准。
+Context、七技能、核心契约和作者流程已形成专题基线，分别位于 docs/research、docs/architecture 和 docs/product。首个运行证据见 [T003 实现记录](docs/technical/VERTICAL_SLICE_T003.md)；当前实现入口始终以 CURRENT_TASK 为准。
 
 ## 开始工作前应能回答
 

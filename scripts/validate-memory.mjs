@@ -184,7 +184,7 @@ function selfTest(snapshot) {
     ['ADR status drift', c => c.set('adr/ADR-007-blueprint-derivation.md', c.get('adr/ADR-007-blueprint-derivation.md').replace('Status: proposed', 'Status: accepted')), 'ADR status mismatch'],
     ['proposal promoted in index', c => c.set('SETTLED_DECISIONS.md', c.get('SETTLED_DECISIONS.md') + '\n| ADR-007 | accepted |\n'), 'Unaccepted ADR'],
     ['missing principle', c => editManifest(c, m => m.principles.pop()), 'Exactly six core principles'],
-    ['wrong next task', c => c.set('memory/handoffs/LATEST.md', c.get('memory/handoffs/LATEST.md').replace('Next-task: T002', 'Next-task: T999')), 'Handoff next task mismatch'],
+    ['wrong next task', c => c.set('memory/handoffs/LATEST.md', c.get('memory/handoffs/LATEST.md').replace(/^Next-task: .+$/m, 'Next-task: T999')), 'Handoff next task mismatch'],
     ['unknown source', c => c.set('README.md', c.get('README.md') + '\nSRC-999\n'), 'Unknown source reference'],
     ['startup drift', c => editManifest(c, m => m.startup_order.reverse()), 'Startup order differs'],
     ['missing approval source', c => editManifest(c, m => { m.adrs[0].confirmed_by = 'SRC-004'; }), 'Accepted ADR lacks confirmation'],

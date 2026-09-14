@@ -37,3 +37,7 @@ Updated: 2026-09-14
 通过已连接的 GitHub App 定位并核实 lainlain77/Novel-AI-OS，拉取 main 的 769ba3b 作为本轮起点。用户要求全面整理项目本体、疑问、后续和扩展，并授权本轮选择组织与首个实现基线。
 
 本轮把 Context Engine 外部研究、七技能方法审计、V5 总体蓝图、核心契约和作者工作流纳入仓库，完成 T002 的 S1–S6 纸面演练。来源与附件限制分别登记为 SRC-005–008 和 Q001/Q013。产品代码仍未开始，下一阶段为 T003 可执行 schema、fixture 和 Context/Canon 纵向切片。
+
+## 2026-09-14 T003 纵向切片
+
+项目首次加入创作运行时代码：TypeScript 类型与应用存储、SQLite/FTS5 schema、任务感知 Policy Gate、Context Packet、Canon proposal transaction、派生失效，以及两作品/两分支 fixture。10 项确定性回归在 Node.js 24.19.0 通过。该里程碑证明核心隔离和事务边界可执行，不代表完整编辑器、模型调用或百万字性能已经完成。ADR-008–011 依据用户授权和运行证据 accepted；下一任务为 T004。

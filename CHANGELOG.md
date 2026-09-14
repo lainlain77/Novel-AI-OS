@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-09-14 — T003 可运行 Context/Canon 核心
+
+- 新增零第三方依赖的 TypeScript + SQLite/FTS5 纵向切片，实现作品/分支/revision、知识与秘密 Policy Gate、Context Packet、预算和来源指纹。
+- 实现 ChangeProposal 保存与原子应用、stale approval 拒绝、失败回滚、历史 supersede 和递归派生摘要失效。
+- 新增两作品/两分支 fixture 与 10 项回归；同名人物、POV、读者未来信息、作者秘密、未确认写入和事务边界全部通过。
+- 接受 ADR-008–011，记录运行边界和已知限制；当前任务推进至 T004 Model Adapter 与最小作者工作台。
+
 ## 2026-09-14 — V5 全面设计基线
 
 - 新增 V5 总体蓝图，统一产品本体、模块边界、数据域、创作流程、技术路线、评估、反模式和长期扩展。

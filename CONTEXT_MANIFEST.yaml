@@ -3,13 +3,13 @@
   "project": {
     "name": "Novel-AI-OS",
     "design_label": "V5 (historical label; release unverified)",
-    "phase": "executable_contract_and_vertical_slice_ready",
-    "product_implementation": "not_started",
+    "phase": "context_canon_core_implemented_author_slice_ready",
+    "product_implementation": "vertical_slice_started",
     "updated": "2026-09-14",
     "audited_baseline": "a4975d94333375076c49e79076776bf954bc1929",
     "historical_coverage": "partial",
     "independent_handoff_test": "pending",
-    "repository_baseline": "769ba3bb89bf29abbba6df5de3dd8a8cb07a0083",
+    "repository_baseline": "see current git main; avoid self-referential commit hash",
     "design_baseline": "V5 comprehensive proposed baseline"
   },
   "format": "JSON-compatible YAML 1.2; parsed without third-party dependencies",
@@ -195,16 +195,48 @@
     {
       "id": "ADR-008",
       "path": "adr/ADR-008-memory-first-architecture.md",
-      "status": "proposed",
+      "status": "accepted",
       "sources": [
         "SRC-002",
-        "SRC-004"
+        "SRC-004",
+        "SRC-005"
       ],
-      "confirmed_by": null
+      "confirmed_by": "SRC-005"
+    },
+    {
+      "id": "ADR-009",
+      "path": "adr/ADR-009-canon-transaction.md",
+      "status": "accepted",
+      "sources": [
+        "SRC-001",
+        "SRC-005"
+      ],
+      "confirmed_by": "SRC-005"
+    },
+    {
+      "id": "ADR-010",
+      "path": "adr/ADR-010-knowledge-gate.md",
+      "status": "accepted",
+      "sources": [
+        "SRC-001",
+        "SRC-005",
+        "SRC-007"
+      ],
+      "confirmed_by": "SRC-005"
+    },
+    {
+      "id": "ADR-011",
+      "path": "adr/ADR-011-local-storage-retrieval.md",
+      "status": "accepted",
+      "sources": [
+        "SRC-005",
+        "SRC-007"
+      ],
+      "confirmed_by": "SRC-005"
     }
   ],
   "current_task": {
-    "id": "T003",
+    "id": "T004",
     "status": "ready",
     "path": "planning/CURRENT_TASK.md"
   },
@@ -264,7 +296,10 @@
       "adr/ADR-008-memory-first-architecture.md",
       "memory/discussions/2026-09-09-context-engine.md",
       "docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md",
-      "docs/architecture/CORE_CONTRACTS.md"
+      "docs/architecture/CORE_CONTRACTS.md",
+      "docs/technical/VERTICAL_SLICE_T003.md",
+      "adr/ADR-010-knowledge-gate.md",
+      "adr/ADR-011-local-storage-retrieval.md"
     ],
     "planning": [
       "docs/planning/PLANNING_SYSTEM.md",
@@ -300,6 +335,11 @@
       "docs/architecture/V5_MASTER_BLUEPRINT.md",
       "docs/architecture/CORE_CONTRACTS.md",
       "docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md"
+      ,
+      "docs/technical/VERTICAL_SLICE_T003.md",
+      "adr/ADR-009-canon-transaction.md",
+      "adr/ADR-010-knowledge-gate.md",
+      "adr/ADR-011-local-storage-retrieval.md"
     ],
     "handoff": [
       "AI_COLLABORATION_PROTOCOL.md",
@@ -355,7 +395,19 @@
     },
     {
       "path": "adr/ADR-008-memory-first-architecture.md",
-      "authority": "proposed_design"
+      "authority": "accepted_decision"
+    },
+    {
+      "path": "adr/ADR-009-canon-transaction.md",
+      "authority": "accepted_decision"
+    },
+    {
+      "path": "adr/ADR-010-knowledge-gate.md",
+      "authority": "accepted_decision"
+    },
+    {
+      "path": "adr/ADR-011-local-storage-retrieval.md",
+      "authority": "accepted_decision"
     },
     {
       "path": "adr/README.md",
@@ -451,7 +503,11 @@
     },
     {
       "path": "docs/technical/IMPLEMENTATION_BOUNDARIES.md",
-      "authority": "proposed_design"
+      "authority": "working_record"
+    },
+    {
+      "path": "docs/technical/VERTICAL_SLICE_T003.md",
+      "authority": "working_record"
     },
     {
       "path": "GLOSSARY.md",
@@ -494,6 +550,10 @@
       "authority": "provenance"
     },
     {
+      "path": "package.json",
+      "authority": "tool"
+    },
+    {
       "path": "planning/CURRENT_TASK.md",
       "authority": "working_record"
     },
@@ -522,8 +582,28 @@
       "authority": "tool"
     },
     {
+      "path": "src/demo.ts",
+      "authority": "tool"
+    },
+    {
+      "path": "src/fixture.ts",
+      "authority": "tool"
+    },
+    {
+      "path": "src/store.ts",
+      "authority": "tool"
+    },
+    {
+      "path": "src/types.ts",
+      "authority": "tool"
+    },
+    {
       "path": "SETTLED_DECISIONS.md",
       "authority": "normative"
+    },
+    {
+      "path": "tests/context-canon.test.ts",
+      "authority": "tool"
     }
   ]
 }
