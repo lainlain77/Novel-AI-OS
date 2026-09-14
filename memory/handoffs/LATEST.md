@@ -1,35 +1,39 @@
 # Latest Handoff
 
-Updated: 2026-09-09
-Completed-task: T001
-Next-task: T002
+Updated: 2026-09-14
+Completed-task: T002
+Next-task: T003
 Target: lainlain77/Novel-AI-OS / main
-Baseline: a4975d94333375076c49e79076776bf954bc1929
+Starting-baseline: 769ba3bb89bf29abbba6df5de3dd8a8cb07a0083
 
 ## 本轮目标和结果
 
-用户要求继续完善 GitHub 项目记忆，任何 AI/新对话从零接手，并保持 P1–P6。基线只有 6 个文件。本轮补齐来源、讨论、ADR、开放问题、历史、架构草案、协作协议、任务/路线图、Manifest 及检查机制。
+用户要求不再局限于单份报告，而是全面整理 V5 本体、疑问、后续、扩展和已有研究，并授权本轮决定组织与首个实现基线。
 
-ADR-000–006 记录已接受目标/原则，ADR-007/008 为提案。架构细节均为 proposed。没有创作产品代码，没有模型、检索或数据库定案。Node.js 脚本只用于文档维护。
+本轮新增：
 
-## 证据与自检
+- [V5 总体蓝图](../../docs/architecture/V5_MASTER_BLUEPRINT.md)：产品本体、原则、模块、数据、流程、技术、评估、反模式、路线和扩展；
+- [核心契约](../../docs/architecture/CORE_CONTRACTS.md)：StoryRecord、Scope/Timeline、Knowledge、Proposal、Context Packet 与 S1–S6 纸面演练；
+- [Context Engine 深度研究](../../docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md)：截至 2026-09-09 的论文、架构、产品实践、成本和评估；
+- [七技能审计与融合 V1.0](../../docs/research/SEVEN_SKILLS_AUDIT_AND_FUSION_V1.md)：吸收/改造/拒绝、Skill 契约和 V1.1 原包复核清单；
+- [作者工作流](../../docs/product/AUTHOR_WORKFLOWS.md)：构思、规划、写作、Canon Inbox、导入、审查、Library 和恢复。
 
-来源：[SOURCE_REGISTER](../SOURCE_REGISTER.md)。编辑前检查六项原则，人工内容演练及脚本结果见 [AUDIT_LOG](../../docs/quality/AUDIT_LOG.md)。自检命令：仓库根目录执行 `node scripts/validate-memory.mjs`；检查器变动后执行 `node scripts/validate-memory.mjs --self-test`。
+T002 的纸面契约完成，没有发现需要推翻 P1–P6 的问题。下一步 T003 将其转成 schema、fixture 和最小 Context/Canon 纵向切片。
 
-本文件随增量一起保存，因此不嵌入自身尚未生成的提交号。发布状态必须用实际远端分支读取确认；仓库网页中可查看本文件对应提交，检出后可运行 `git log -1 --format=%H -- memory/handoffs/LATEST.md` 获取最近更新它的提交。本地文件存在本身不证明已发布。
+## 决定与状态
+
+P1–P6 继续 accepted。新增模块字段和流程为 proposed design baseline；Context 外部研究为 research completed，V5 运行评估仍 pending；七技能为 reconstructed audit，原包逐文件核验待 V1.1。
+
+首个工程切片采用本地优先、TypeScript 模块化单体、SQLite + FTS5、内容寻址原文和可替换 Model Adapter。向量、图数据库、多 Agent、云同步和平台适配后置，以评估结果决定。
 
 ## 已知限制
 
-完整前面对话两次超时，只有有限摘录。更早分支和附件未取得；本地 sources 无文件。Q001 保留历史缺口。接手演练由同一协作者进行，Q010 的独立新会话验收未完成。结构检查不验证自然语言语义或模型能力。
-
-没有修改小说 Canon 或素材库内容。本轮“无冲突”是对文档的审查结论，不是运行时安全测试结论。
+仓库没有创作应用代码。原对话附件只剩占位记录，七技能文件/hash/脚本和许可证未直接核验。Context 推荐方案未用 V5 语料跑分。Q001、Q002、Q007、Q010–Q014 保留来源、决策、评估、隐私、Skill 治理和协作问题。
 
 ## 下一步
 
-直接执行 [CURRENT_TASK T002](../../planning/CURRENT_TASK.md)，对 S1–S6 做最小契约演练，完善 Q003–Q006 的可评审方案。优先从混合题材和双故事素材隔离开始。输入和完成标准在当前任务中，不从头重复生成文档框架。
+执行 [CURRENT_TASK T003](../../planning/CURRENT_TASK.md)。先做 deterministic schema、Policy Gate、fixture、proposal transaction 和派生失效，再接模型。必须先通过跨故事污染、秘密泄漏、误信、过时批准和失败恢复用例。
 
-Q001 可在原文可访问后补录；Q010 可由没有聊天历史的独立协作者执行。若发现新增材料与摘要冲突，先登记来源和差异，再修订关联记录，保留修订原因。
+## 恢复与发布核验
 
-## 中断或发布失败的恢复
-
-先读取目标分支最新状态，比较本轮已审文档和远端。没有确认提交就只报告本地完成；不要重复覆盖并行变更。若存在本轮未发布文件，重新检查关联和 P1–P6 后再发布。具体本地目录是执行环境信息，不作为未来协作者依赖。
+先比较远端 main 与本交接对应提交，不覆盖并行修改。仓库根运行 `node scripts/validate-memory.mjs`；若检查器修改，再运行 `--self-test`。只有 GitHub 上可读取到本轮提交和新增文件时，才能称本轮已同步。

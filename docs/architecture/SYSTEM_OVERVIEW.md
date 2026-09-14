@@ -5,6 +5,8 @@ Sources: SRC-001, SRC-002, SRC-003, SRC-004
 
 六项 [原则](ARCHITECTURE_PRINCIPLES.md) 已确定；本页的模块分工和数据流为可评审草案。当前没有运行时实现。
 
+完整产品本体、技术基线、评估和扩展见 [V5 总体蓝图](V5_MASTER_BLUEPRINT.md)；可实现的数据边界和 S1–S6 演练见 [核心契约](CORE_CONTRACTS.md)。
+
 ## 责任与边界
 
 | 部分 | 负责 | 输入 → 输出 | 不承担 |
@@ -32,6 +34,6 @@ Sources: SRC-001, SRC-002, SRC-003, SRC-004
 
 ## 规格导航
 
-[Kernel](../kernel/STORY_KERNEL.md) · [Capability](../capability/CAPABILITY_SYSTEM.md) · [Library/Canon](../library/LIBRARY_CANON.md) · [Planning](../planning/PLANNING_SYSTEM.md) · [Context](../context/CONTEXT_ENGINE.md) · [AI Workflow](../ai/AI_WORKFLOW.md) · [Project Memory](../memory/MEMORY_SYSTEM.md) · [实现边界](../technical/IMPLEMENTATION_BOUNDARIES.md)
+[V5 总体蓝图](V5_MASTER_BLUEPRINT.md) · [核心契约](CORE_CONTRACTS.md) · [Kernel](../kernel/STORY_KERNEL.md) · [Capability](../capability/CAPABILITY_SYSTEM.md) · [Library/Canon](../library/LIBRARY_CANON.md) · [Planning](../planning/PLANNING_SYSTEM.md) · [Context](../context/CONTEXT_ENGINE.md) · [AI Workflow](../ai/AI_WORKFLOW.md) · [作者工作流](../product/AUTHOR_WORKFLOWS.md) · [Project Memory](../memory/MEMORY_SYSTEM.md) · [实现边界](../technical/IMPLEMENTATION_BOUNDARIES.md)
 
 优先验证 [场景](ACCEPTANCE_SCENARIOS.md)，根据问题修订契约，再决定技术栈。不要把这些文档的存在当作模块完成。

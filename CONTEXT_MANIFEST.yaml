@@ -3,12 +3,14 @@
   "project": {
     "name": "Novel-AI-OS",
     "design_label": "V5 (historical label; release unverified)",
-    "phase": "repository_memory_foundation",
+    "phase": "executable_contract_and_vertical_slice_ready",
     "product_implementation": "not_started",
-    "updated": "2026-09-09",
+    "updated": "2026-09-14",
     "audited_baseline": "a4975d94333375076c49e79076776bf954bc1929",
     "historical_coverage": "partial",
-    "independent_handoff_test": "pending"
+    "independent_handoff_test": "pending",
+    "repository_baseline": "769ba3bb89bf29abbba6df5de3dd8a8cb07a0083",
+    "design_baseline": "V5 comprehensive proposed baseline"
   },
   "format": "JSON-compatible YAML 1.2; parsed without third-party dependencies",
   "startup_order": [
@@ -79,6 +81,30 @@
       "id": "SRC-004",
       "type": "current_session_analysis",
       "coverage": "documented_proposals_and_audit",
+      "path": "memory/SOURCE_REGISTER.md"
+    },
+    {
+      "id": "SRC-005",
+      "type": "current_user_instruction",
+      "coverage": "comprehensive_consolidation_and_implementation_baseline",
+      "path": "memory/SOURCE_REGISTER.md"
+    },
+    {
+      "id": "SRC-006",
+      "type": "chatgpt_thread",
+      "coverage": "accessible_architecture_and_seven_skill_discussion",
+      "path": "memory/SOURCE_REGISTER.md"
+    },
+    {
+      "id": "SRC-007",
+      "type": "research_report",
+      "coverage": "context_engine_external_research_through_2026-09-09",
+      "path": "docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md"
+    },
+    {
+      "id": "SRC-008",
+      "type": "repository_snapshot",
+      "coverage": "main_at_769ba3b_before_2026-09-14_consolidation",
       "path": "memory/SOURCE_REGISTER.md"
     }
   ],
@@ -178,7 +204,7 @@
     }
   ],
   "current_task": {
-    "id": "T002",
+    "id": "T003",
     "status": "ready",
     "path": "planning/CURRENT_TASK.md"
   },
@@ -194,7 +220,11 @@
       "Q007",
       "Q008",
       "Q009",
-      "Q010"
+      "Q010",
+      "Q011",
+      "Q012",
+      "Q013",
+      "Q014"
     ]
   },
   "latest_handoff": "memory/handoffs/LATEST.md",
@@ -206,7 +236,9 @@
       "adr/ADR-002-platform-independent.md",
       "adr/ADR-003-genre-not-architecture.md",
       "memory/discussions/2026-09-09-architecture-origin.md",
-      "docs/architecture/ACCEPTANCE_SCENARIOS.md"
+      "docs/architecture/ACCEPTANCE_SCENARIOS.md",
+      "docs/architecture/V5_MASTER_BLUEPRINT.md",
+      "docs/architecture/CORE_CONTRACTS.md"
     ],
     "kernel": [
       "docs/kernel/STORY_KERNEL.md",
@@ -230,12 +262,17 @@
       "docs/context/CONTEXT_ENGINE.md",
       "docs/kernel/STORY_KERNEL.md",
       "adr/ADR-008-memory-first-architecture.md",
-      "memory/discussions/2026-09-09-context-engine.md"
+      "memory/discussions/2026-09-09-context-engine.md",
+      "docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md",
+      "docs/architecture/CORE_CONTRACTS.md"
     ],
     "planning": [
       "docs/planning/PLANNING_SYSTEM.md",
       "docs/ai/AI_WORKFLOW.md",
-      "planning/OPEN_QUESTIONS.md"
+      "planning/OPEN_QUESTIONS.md",
+      "docs/architecture/V5_MASTER_BLUEPRINT.md",
+      "docs/product/AUTHOR_WORKFLOWS.md",
+      "docs/architecture/CORE_CONTRACTS.md"
     ],
     "canon_and_ai": [
       "docs/ai/AI_WORKFLOW.md",
@@ -259,7 +296,10 @@
     ],
     "technical": [
       "docs/technical/IMPLEMENTATION_BOUNDARIES.md",
-      "planning/OPEN_QUESTIONS.md"
+      "planning/OPEN_QUESTIONS.md",
+      "docs/architecture/V5_MASTER_BLUEPRINT.md",
+      "docs/architecture/CORE_CONTRACTS.md",
+      "docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md"
     ],
     "handoff": [
       "AI_COLLABORATION_PROTOCOL.md",
@@ -270,49 +310,17 @@
       "docs/quality/HANDOFF_ACCEPTANCE.md",
       "docs/quality/AUDIT_LOG.md",
       "scripts/validate-memory.mjs"
+    ],
+    "product": [
+      "docs/product/AUTHOR_WORKFLOWS.md",
+      "docs/architecture/V5_MASTER_BLUEPRINT.md"
+    ],
+    "research": [
+      "docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md",
+      "docs/research/SEVEN_SKILLS_AUDIT_AND_FUSION_V1.md"
     ]
   },
   "documents": [
-    {
-      "path": "AGENTS.md",
-      "authority": "normative"
-    },
-    {
-      "path": "AI_COLLABORATION_PROTOCOL.md",
-      "authority": "normative"
-    },
-    {
-      "path": "AI_START_HERE.md",
-      "authority": "normative"
-    },
-    {
-      "path": "CHANGELOG.md",
-      "authority": "working_record"
-    },
-    {
-      "path": "CONTEXT_MANIFEST.yaml",
-      "authority": "normative"
-    },
-    {
-      "path": "GLOSSARY.md",
-      "authority": "working_record"
-    },
-    {
-      "path": "PROJECT_HISTORY.md",
-      "authority": "provenance"
-    },
-    {
-      "path": "PROJECT_STATE.md",
-      "authority": "working_record"
-    },
-    {
-      "path": "README.md",
-      "authority": "working_record"
-    },
-    {
-      "path": "SETTLED_DECISIONS.md",
-      "authority": "normative"
-    },
     {
       "path": "adr/ADR-000-project-memory.md",
       "authority": "accepted_decision"
@@ -354,6 +362,26 @@
       "authority": "normative"
     },
     {
+      "path": "AGENTS.md",
+      "authority": "normative"
+    },
+    {
+      "path": "AI_COLLABORATION_PROTOCOL.md",
+      "authority": "normative"
+    },
+    {
+      "path": "AI_START_HERE.md",
+      "authority": "normative"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "CONTEXT_MANIFEST.yaml",
+      "authority": "normative"
+    },
+    {
       "path": "docs/ai/AI_WORKFLOW.md",
       "authority": "proposed_design"
     },
@@ -366,7 +394,15 @@
       "authority": "normative"
     },
     {
+      "path": "docs/architecture/CORE_CONTRACTS.md",
+      "authority": "proposed_design"
+    },
+    {
       "path": "docs/architecture/SYSTEM_OVERVIEW.md",
+      "authority": "proposed_design"
+    },
+    {
+      "path": "docs/architecture/V5_MASTER_BLUEPRINT.md",
       "authority": "proposed_design"
     },
     {
@@ -394,6 +430,10 @@
       "authority": "proposed_design"
     },
     {
+      "path": "docs/product/AUTHOR_WORKFLOWS.md",
+      "authority": "proposed_design"
+    },
+    {
       "path": "docs/quality/AUDIT_LOG.md",
       "authority": "working_record"
     },
@@ -402,12 +442,20 @@
       "authority": "working_record"
     },
     {
+      "path": "docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md",
+      "authority": "provenance"
+    },
+    {
+      "path": "docs/research/SEVEN_SKILLS_AUDIT_AND_FUSION_V1.md",
+      "authority": "provenance"
+    },
+    {
       "path": "docs/technical/IMPLEMENTATION_BOUNDARIES.md",
       "authority": "proposed_design"
     },
     {
-      "path": "memory/SOURCE_REGISTER.md",
-      "authority": "provenance"
+      "path": "GLOSSARY.md",
+      "authority": "working_record"
     },
     {
       "path": "memory/discussions/2026-09-09-ai-handoff.md",
@@ -442,6 +490,10 @@
       "authority": "working_record"
     },
     {
+      "path": "memory/SOURCE_REGISTER.md",
+      "authority": "provenance"
+    },
+    {
       "path": "planning/CURRENT_TASK.md",
       "authority": "working_record"
     },
@@ -454,8 +506,24 @@
       "authority": "working_record"
     },
     {
+      "path": "PROJECT_HISTORY.md",
+      "authority": "provenance"
+    },
+    {
+      "path": "PROJECT_STATE.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "README.md",
+      "authority": "working_record"
+    },
+    {
       "path": "scripts/validate-memory.mjs",
       "authority": "tool"
+    },
+    {
+      "path": "SETTLED_DECISIONS.md",
+      "authority": "normative"
     }
   ]
 }

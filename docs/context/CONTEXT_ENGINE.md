@@ -1,9 +1,9 @@
-# Context Engine 设计与验证计划
+# Context Engine 设计基线与验证计划
 
 Status: proposed
-Sources: SRC-002, SRC-003, SRC-004
+Sources: SRC-002, SRC-003, SRC-004, SRC-006, SRC-007
 
-目标：为当前创作/分析任务提供相关、可追溯、范围正确的上下文。没有选定 Long Context、RAG、Graph RAG 或 Hybrid，没有已完成的性能比较。
+目标：为当前创作/分析任务提供相关、可追溯、范围正确的上下文。外部研究与推荐架构已经完成，详见 [深度研究报告](../research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md)。当前推荐以权限硬过滤、结构化查询、FTS/BM25、适度长上下文和可失效摘要组成首版；向量、图扩展和多级递归检索须由评估证明收益。尚未完成 V5 运行时性能比较。
 
 ## 查询与上下文包候选契约
 

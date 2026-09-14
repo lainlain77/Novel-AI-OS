@@ -9,7 +9,7 @@
 1. 本文件：目标与接手要求。
 2. [PROJECT_STATE.md](PROJECT_STATE.md)：事实状态及边界。
 3. [CONTEXT_MANIFEST.yaml](CONTEXT_MANIFEST.yaml)：真实文件地图、主题路由及提案状态。
-4. [架构原则](docs/architecture/ARCHITECTURE_PRINCIPLES.md)：P1–P6。
+4. [架构原则](docs/architecture/ARCHITECTURE_PRINCIPLES.md)：P1–P6；需要完整产品图时读取 [V5 总体蓝图](docs/architecture/V5_MASTER_BLUEPRINT.md)。
 5. [已确定决定](SETTLED_DECISIONS.md) 与 [ADR 索引](adr/README.md)：结论、理由及哪些仍是提案。
 6. [AI 协作协议](AI_COLLABORATION_PROTOCOL.md)：修改、自检和交接流程。
 7. [来源登记](memory/SOURCE_REGISTER.md)：证据范围与缺失历史。
@@ -17,6 +17,8 @@
 9. [当前任务](planning/CURRENT_TASK.md) 与 [开放问题](planning/OPEN_QUESTIONS.md)：下一步和未决事项。
 
 再通过 Manifest 的 routes 读取相关 ADR、讨论和规格。处理架构变更时必须读取该原则对应 ADR 的全文；不需要在所有任务中重读全部历史。
+
+Context、七技能、核心契约和作者流程已形成专题基线，分别位于 docs/research、docs/architecture 和 docs/product。研究完成不等于产品实现；当前实现入口始终以 CURRENT_TASK 为准。
 
 ## 开始工作前应能回答
 

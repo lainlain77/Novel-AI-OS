@@ -5,6 +5,8 @@ Sources: SRC-002, SRC-003, SRC-004
 
 历史中确定需要故事规划能力；没有取得其完整设计。以下层级和操作是待评审提案。
 
+本轮已将最小稳定概念收束为 AuthorIntent、PlanNode 与 NarrativeThread；Story Core、Story Spine、Arc Contract、Chapter Mission 和 Scene Plan 作为组合视图，详见 [V5 总体蓝图](../architecture/V5_MASTER_BLUEPRINT.md)。
+
 ## 规划层级与产物
 
 可从作品意图、阶段/卷目标、情节线、章节、场景到候选事件逐步展开。层级允许按作者习惯调整，不能把某个平台的章节长度规则固化进 Kernel。

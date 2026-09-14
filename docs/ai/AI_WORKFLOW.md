@@ -5,6 +5,8 @@ Sources: SRC-001, SRC-003, SRC-004
 
 项目级协作遵循 [AI_COLLABORATION_PROTOCOL](../../AI_COLLABORATION_PROTOCOL.md)。本页讨论未来创作产品的候选流程，两者不能混为已实现功能。
 
+作者可见的端到端操作见 [作者工作流](../product/AUTHOR_WORKFLOWS.md)，Proposal/Canon/Context Packet 的候选字段见 [核心契约](../architecture/CORE_CONTRACTS.md)。
+
 ## 任务闭环
 
 读取授权上下文 → 生成候选内容 → 核对约束和来源 → 展示正文及事实差异 → 作者接受/拒绝/搁置 → 应用有效批准并记录结果。

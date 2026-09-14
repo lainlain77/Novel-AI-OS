@@ -1,34 +1,41 @@
 # Current Task
 
-Updated: 2026-09-09
-Task-ID: T002
+Updated: 2026-09-14
+Task-ID: T003
 Status: ready
-Title: Kernel 最小契约与边界案例评审草案
+Title: Context/Canon 纵向切片的可执行规格与评估夹具
 
 ## 接手点
 
-T001 项目记忆补全已形成文档和自检产物，结果见 [审计](../docs/quality/AUDIT_LOG.md)。下一位协作者从本任务继续，不重复初始化仓库。Q001 历史补录和 Q010 独立接手测试可并行进行。
+T002 已完成纸面契约与 S1–S6 演练，见 [CORE_CONTRACTS](../docs/architecture/CORE_CONTRACTS.md)。V5 总体设计、Context Engine 研究、七技能融合和作者工作流已形成可追溯基线。当前没有产品代码；本任务把设计转成可运行的最小实现规格。
 
 ## 目标与范围
 
-基于已有草案，把“原则允许什么、禁止什么”转成可评审的最小对象/作用域/版本/来源/变更契约。完成的是设计验证，不能直接把 schema 或技术栈标为作者已批准。
+定义并实现或准备实现一个本地优先纵向切片：作品/分支/Scene → 版本化 Canon/Knowledge → Task Contract → Context Packet → Draft/Change Proposal → 作者确认 → 原子提交与派生失效。
 
-前置阅读：[原则](../docs/architecture/ARCHITECTURE_PRINCIPLES.md)、[ADR 索引](../adr/README.md)、[Kernel](../docs/kernel/STORY_KERNEL.md)、[Capability](../docs/capability/CAPABILITY_SYSTEM.md)、[Library/Canon](../docs/library/LIBRARY_CANON.md)、[工作流](../docs/ai/AI_WORKFLOW.md)、[S1–S6](../docs/architecture/ACCEPTANCE_SCENARIOS.md)、[Q003–Q006](OPEN_QUESTIONS.md)。
+本任务不实现完整编辑器、GraphRAG、多 Agent、云同步或平台适配。首个技术基线为 TypeScript 模块化单体、SQLite + FTS5、内容寻址原文和可替换 Model Adapter。
+
+前置阅读：[总体蓝图](../docs/architecture/V5_MASTER_BLUEPRINT.md)、[核心契约](../docs/architecture/CORE_CONTRACTS.md)、[Context 研究](../docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md)、[作者工作流](../docs/product/AUTHOR_WORKFLOWS.md)、Q002/Q004/Q005/Q008/Q011。
 
 ## 可立即执行的步骤
 
-1. 对八类 Kernel 概念逐项给出最小示例，说明身份、作用域、版本、时间、来源由对象还是外层容器承载。
-2. 以 S1/S2 检查混合能力、共享身份、原版/双故事实例和派生版本；列出表达不了的地方。
-3. 以 S3/S4 明确候选变化状态、作者确认绑定范围、基线冲突和失败恢复的契约。
-4. 以 S5/S6 检查角色误信、跨故事检索和发布/素材升级对核心的影响。
-5. 将可选方案、冲突、样例和推荐理由写入现有规格及讨论；更新问题、ADR 提案、状态和交接。
+1. 将 StoryRecord、Scope/Timeline、Knowledge、ChangeProposal、ContextPacket 转成版本化 schema 草案和迁移策略。
+2. 建立两部作品、两个分支、回忆/循环、同名人物、误信、作者秘密和旧摘要的最小 fixture。
+3. 定义 Task Contract、Policy Gate、结构化查询、FTS 检索、预算装配和 Context Inspector 输出。
+4. 实现或原型化 proposal stale 检查、原子提交、失败恢复和派生依赖失效。
+5. 跑 S1–S6 与 Q011 指标，记录必须包含、禁止包含、来源正确性、token、延迟和失败样本。
+6. 根据结果为 Canon transaction、knowledge gate 和首版存储/检索分别提出新的 ADR，并在创建后分配正式编号。
 
 ## 产出与完成标准
 
-每个 S1–S6 都有具体输入、候选表达、预期与禁止变化、逐项结论和缺口。Q003–Q006 各有可评审方案或说明仍缺的证据；P1–P6 无未处理冲突；所有新增内容可从 Manifest 定位，结构检查通过。
+- 可执行或可直接编码的 schema/接口规格，字段与 CORE_CONTRACTS 可追踪；
+- 可版本化的评估 fixture 和标准答案；
+- 最小检索/装配与 Canon 提交流程可演示；
+- S1–S6 无跨故事污染、秘密泄漏或未确认写入；
+- 性能/成本结果注明模型、版本、硬件和日期；
+- 新增代码与文档被 Manifest 登记，结构检查和相关测试通过；
+- PROJECT_STATE、OPEN_QUESTIONS、ROADMAP、LATEST 和 CHANGELOG 同步。
 
-设计草案完成不要求假装作者已批准；需作者决定的具体选择集中展示证据和差异后再提出。未取得完整历史不阻塞以上新增分析，但必须标为本轮 proposed。
+## 决策与停止条件
 
-## 不足与恢复
-
-无运行时或技术栈可供测试。遇到缺少作者偏好时先做独立的表达/边界验证，把影响决策的具体选项记录到问题中。中断时把已验证场景、未验证场景和下一步写入 [LATEST](../memory/handoffs/LATEST.md)。
+首版先验证正确性、隔离和可追溯，再优化召回与速度。若 SQLite/FTS 在标准任务上不能满足门槛，记录失败后再比较向量或图扩展。模型不可用不阻止完成 deterministic fixture、Policy Gate 和存储事务。
