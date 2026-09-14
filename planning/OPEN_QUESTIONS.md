@@ -9,7 +9,7 @@ Updated: 2026-09-15
 | ID | 优先级 | 状态 | 问题 | 推进角色 | 依赖 |
 | --- | --- | --- | --- | --- | --- |
 | Q001 | P0 | open | 完整历史与来源覆盖 | 资料整理 AI；原文访问需作者/平台提供 | 原会话、早期分支或原始资料可读取 |
-| Q002 | P1 | lexical_validated_hybrid_accepted | 长篇 Context Retrieval 策略 | 架构/实现 AI | T005、ADR-013；具体 embedding 待 T006 |
+| Q002 | P1 | hybrid_interface_validated_model_open | 长篇 Context Retrieval 策略 | 架构/实现 AI | T005/T006、ADR-013；生产 embedding 待 T007 |
 | Q003 | P1 | open | Capability 依赖、冲突、范围与升级 | 架构 AI | S1 及通用 Kernel 草案 |
 | Q004 | P1 | resolved_baseline | Canon 确认、版本、并发及恢复 | 架构 AI；作者评审 | ADR-009、T003；多人合并见 Q014 |
 | Q005 | P1 | baseline_implemented_inference_open | 世界事实、角色知识和读者可见范围 | 架构/写作 AI | ADR-010、T003；自动推断评估待 Q011 |
@@ -33,7 +33,7 @@ Updated: 2026-09-15
 
 研究基线与 T005 百万字合成实测已完成。权限硬过滤 + FTS5 在精确查询上 45/45、泄漏 0/60、p95 66.762 ms；无共享词同义查询 0/5。ADR-013 已决定在 Policy Gate 内加入可替换语义通道，FTS 保持 fallback。
 
-T006 需在扩展语义集上比较 embedding/hybrid；自然小说、模型生成质量和供应商变化仍需注明数据/版本/日期。GraphRAG 继续等待多跳失败证据。
+T006 已在 30 条 fixture 语义题上验证 adapter/cache/RRF，hybrid 30/30 且零泄漏。该 provider 是概念映射测试替身；T007 必须使用许可证清楚的真实模型与真实/许可小说语料。GraphRAG 继续等待多跳失败证据。
 
 ## Q003 — 能力组合
 
@@ -85,7 +85,7 @@ T004 已实现任务/POV → Context Inspector → 草稿/建议 → Canon Inbox
 
 ## Q011 — 评估夹具与门槛
 
-T003 建立小型安全回归；T005 增加固定 seed 的 1,072,358 字符、2,131 记录、70 次编译基准。精确召回、零泄漏、来源、延迟和失效门槛通过，语义词法基线 0/5。自然小说、Library 升级、旧章重写、真实 tokenizer、语义/生成质量、多次运行分布和人工标注仍待扩充。
+T003 建立小型安全回归；T005 增加精确与隔离长篇基准；T006 增加 1,073,770 字符、30 条语义题和 FTS/embedding/hybrid 对比。接口、安全、cache 与融合已验证；自然小说、Library 升级、旧章重写、真实 tokenizer/embedding、生成质量、多次运行分布和人工标注仍待扩充。
 
 ## Q012 — 隐私与模型数据策略
 

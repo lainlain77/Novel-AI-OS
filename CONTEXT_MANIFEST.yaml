@@ -3,7 +3,7 @@
   "project": {
     "name": "Novel-AI-OS",
     "design_label": "V5 (historical label; release unverified)",
-    "phase": "million_character_baseline_completed_hybrid_retrieval_ready",
+    "phase": "hybrid_interface_completed_production_semantic_evaluation_ready",
     "product_implementation": "vertical_slice_started",
     "updated": "2026-09-15",
     "audited_baseline": "a4975d94333375076c49e79076776bf954bc1929",
@@ -258,7 +258,7 @@
     }
   ],
   "current_task": {
-    "id": "T006",
+    "id": "T007",
     "status": "ready",
     "path": "planning/CURRENT_TASK.md"
   },
@@ -328,6 +328,8 @@
       ,
       "docs/quality/LONG_CONTEXT_BENCHMARK_T005.md",
       "adr/ADR-013-policy-gated-hybrid-retrieval.md"
+      ,
+      "docs/quality/HYBRID_RETRIEVAL_BENCHMARK_T006.md"
     ],
     "planning": [
       "docs/planning/PLANNING_SYSTEM.md",
@@ -374,6 +376,8 @@
       ,
       "docs/quality/LONG_CONTEXT_BENCHMARK_T005.md",
       "adr/ADR-013-policy-gated-hybrid-retrieval.md"
+      ,
+      "docs/quality/HYBRID_RETRIEVAL_BENCHMARK_T006.md"
     ],
     "handoff": [
       "AI_COLLABORATION_PROTOCOL.md",
@@ -393,7 +397,8 @@
     "research": [
       "docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md",
       "docs/research/SEVEN_SKILLS_AUDIT_AND_FUSION_V1.md",
-      "docs/quality/LONG_CONTEXT_BENCHMARK_T005.md"
+      "docs/quality/LONG_CONTEXT_BENCHMARK_T005.md",
+      "docs/quality/HYBRID_RETRIEVAL_BENCHMARK_T006.md"
     ]
   },
   "documents": [
@@ -474,7 +479,15 @@
       "authority": "tool"
     },
     {
+      "path": "benchmarks/hybrid-retrieval.ts",
+      "authority": "tool"
+    },
+    {
       "path": "benchmarks/results/t005-local-2026-09-15.json",
+      "authority": "provenance"
+    },
+    {
+      "path": "benchmarks/results/t006-local-2026-09-15.json",
       "authority": "provenance"
     },
     {
@@ -543,6 +556,10 @@
     },
     {
       "path": "docs/quality/HANDOFF_ACCEPTANCE.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "docs/quality/HYBRID_RETRIEVAL_BENCHMARK_T006.md",
       "authority": "working_record"
     },
     {
@@ -658,6 +675,10 @@
       "authority": "tool"
     },
     {
+      "path": "src/retrieval.ts",
+      "authority": "tool"
+    },
+    {
       "path": "src/server.ts",
       "authority": "tool"
     },
@@ -679,6 +700,10 @@
     },
     {
       "path": "tests/context-canon.test.ts",
+      "authority": "tool"
+    },
+    {
+      "path": "tests/retrieval.test.ts",
       "authority": "tool"
     },
     {

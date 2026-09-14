@@ -93,6 +93,15 @@ export class NovelStore {
         source_revision INTEGER NOT NULL,
         PRIMARY KEY (derived_record_id, source_record_id)
       );
+      CREATE TABLE IF NOT EXISTS embedding_cache (
+        record_id TEXT NOT NULL REFERENCES records(id),
+        model_id TEXT NOT NULL,
+        content_hash TEXT NOT NULL,
+        dimensions INTEGER NOT NULL,
+        vector_json TEXT NOT NULL,
+        source_revision INTEGER NOT NULL,
+        PRIMARY KEY (record_id, model_id)
+      );
     `);
   }
 
@@ -226,7 +235,7 @@ export class NovelStore {
     };
   }
 
-  private eligibleRecords(task: TaskContract): StoredRecord[] {
+  listEligibleRecords(task: TaskContract): StoredRecord[] {
     if (task.baseRevision > this.getRevision(task.storyId, task.branchId)) {
       throw new Error("Task baseRevision is ahead of Canon");
     }
@@ -270,7 +279,7 @@ export class NovelStore {
     if (task.audience === "character" && !task.povEntityId) {
       throw new Error("Character context requires povEntityId");
     }
-    const eligible = this.eligibleRecords(task);
+    const eligible = this.listEligibleRecords(task);
     const eligibleIds = new Set(eligible.map((record) => record.id));
     const rankedIds = this.searchIds(task, eligibleIds);
     const rank = new Map(rankedIds.map((id, index) => [id, index]));
@@ -342,6 +351,62 @@ export class NovelStore {
       LIMIT 64
     `).all(ftsQuery, task.storyId, task.branchId) as Row[];
     return rows.map((row) => String(row.record_id)).filter((id) => eligibleIds.has(id));
+  }
+
+  searchLexicalIds(task: TaskContract, eligibleIds: Set<string>): string[] {
+    return this.searchIds(task, eligibleIds);
+  }
+
+  getCachedEmbedding(recordId: string, modelId: string, contentHash: string): number[] | undefined {
+    const row = this.db.prepare(`
+      SELECT vector_json FROM embedding_cache
+      WHERE record_id = ? AND model_id = ? AND content_hash = ?
+    `).get(recordId, modelId, contentHash) as Row | undefined;
+    return row ? JSON.parse(String(row.vector_json)) as number[] : undefined;
+  }
+
+  putCachedEmbeddings(entries: Array<{
+    recordId: string;
+    modelId: string;
+    contentHash: string;
+    dimensions: number;
+    vector: number[];
+    sourceRevision: number;
+  }>): void {
+    if (entries.length === 0) return;
+    const statement = this.db.prepare(`
+      INSERT INTO embedding_cache(record_id, model_id, content_hash, dimensions, vector_json, source_revision)
+      VALUES (?, ?, ?, ?, ?, ?)
+      ON CONFLICT(record_id, model_id) DO UPDATE SET
+        content_hash = excluded.content_hash,
+        dimensions = excluded.dimensions,
+        vector_json = excluded.vector_json,
+        source_revision = excluded.source_revision
+    `);
+    this.db.exec("BEGIN IMMEDIATE");
+    try {
+      for (const entry of entries) {
+        statement.run(
+          entry.recordId,
+          entry.modelId,
+          entry.contentHash,
+          entry.dimensions,
+          JSON.stringify(entry.vector),
+          entry.sourceRevision,
+        );
+      }
+      this.db.exec("COMMIT");
+    } catch (error) {
+      if (this.db.isTransaction) this.db.exec("ROLLBACK");
+      throw error;
+    }
+  }
+
+  embeddingCacheCount(modelId?: string): number {
+    const row = modelId
+      ? this.db.prepare("SELECT count(*) AS count FROM embedding_cache WHERE model_id = ?").get(modelId) as Row
+      : this.db.prepare("SELECT count(*) AS count FROM embedding_cache").get() as Row;
+    return Number(row.count);
   }
 
   saveProposal(proposal: ChangeProposal): void {

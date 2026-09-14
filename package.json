@@ -9,6 +9,7 @@
     "demo": "node src/demo.ts",
     "workbench": "node src/server.ts",
     "benchmark": "node benchmarks/long-context.ts",
+    "benchmark:hybrid": "node benchmarks/hybrid-retrieval.ts",
     "validate": "node scripts/validate-memory.mjs && node --test tests/*.test.ts"
   },
   "engines": {

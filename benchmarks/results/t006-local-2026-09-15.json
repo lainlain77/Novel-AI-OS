@@ -1,0 +1,75 @@
+{
+  "schema": "novel-ai-os-hybrid-retrieval-benchmark-v1",
+  "seed": "novel-ai-os-t006-v1",
+  "measuredAt": "2026-09-14T16:47:15.895Z",
+  "environment": {
+    "node": "v24.16.0",
+    "platform": "win32-x64",
+    "cpu": "AMD Ryzen 7 4800H with Radeon Graphics",
+    "logicalCpus": 16,
+    "memoryGiB": 15.4
+  },
+  "fixture": {
+    "records": 2162,
+    "mainStoryCharacters": 1073770,
+    "semanticCases": 30,
+    "provider": {
+      "id": "fixture-concepts-t006-v1-a26c98dd29",
+      "dimensions": 30,
+      "fixtureOnly": true
+    }
+  },
+  "build": {
+    "lexicalMs": 298.737,
+    "embeddingMs": 84.291,
+    "cacheEntries": 2100,
+    "databaseBytesBeforeEmbedding": 9158656,
+    "databaseBytesAfterEmbedding": 9687040
+  },
+  "results": {
+    "ftsSemantic": {
+      "recallAt16": 0,
+      "mrr": 0,
+      "p50Ms": 55.54,
+      "p95Ms": 59.646,
+      "maxMs": 60.711
+    },
+    "embeddingSemantic": {
+      "recallAt16": 1,
+      "mrr": 1,
+      "p50Ms": 60.269,
+      "p95Ms": 65.588,
+      "maxMs": 79.822
+    },
+    "hybridSemantic": {
+      "recallAt16": 1,
+      "mrr": 1,
+      "p50Ms": 60.389,
+      "p95Ms": 63.737,
+      "maxMs": 66.892
+    },
+    "ftsExact": {
+      "recallAt16": 1,
+      "mrr": 1,
+      "p50Ms": 55.935,
+      "p95Ms": 58.338,
+      "maxMs": 63.999
+    },
+    "hybridExact": {
+      "recallAt16": 1,
+      "mrr": 1,
+      "p50Ms": 60.356,
+      "p95Ms": 63.929,
+      "maxMs": 66.048
+    }
+  },
+  "safety": {
+    "leaks": 0,
+    "provenanceErrors": 0,
+    "explanationErrors": 0
+  },
+  "limitations": [
+    "The embedding provider is a deterministic fixture concept mapper, not a production semantic model.",
+    "The benchmark validates interfaces, policy order, cache versioning, fusion, and regression math only."
+  ]
+}

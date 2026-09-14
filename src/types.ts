@@ -82,6 +82,16 @@ export interface ContextSection {
   sensitivity: Sensitivity;
   provenance: ProvenanceRef[];
   selectedBecause: string;
+  retrieval?: {
+    fusedScore: number;
+    channels: Array<{
+      retrieverId: string;
+      rank: number;
+      score: number;
+      modelId?: string;
+      contentHash: string;
+    }>;
+  };
 }
 
 export interface ContextPacket {

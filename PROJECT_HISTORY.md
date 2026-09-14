@@ -49,3 +49,7 @@ Updated: 2026-09-14
 ## 2026-09-15 T005 百万字基准
 
 固定 seed 生成 1,072,358 个主故事字符和 2,131 条记录。精确词法用例 45/45、禁止项 0/60 泄漏，p95 66.762 ms；无共享词同义改写 0/5。数据支持保留 SQLite/FTS5 为安全与精确 fallback，同时以 ADR-013 增加 policy-gated hybrid retriever 边界。原始 JSON、硬件与复现命令已入库。
+
+## 2026-09-15 T006 混合检索接口
+
+实现 policy-gated Retriever Adapter、Embedding Provider、版本化 SQLite cache、RRF 和词法失败降级。30 个 fixture 语义题从 FTS 0/30 提升到 hybrid 30/30，精确查询保持 30/30，p95 约 64 ms，安全/来源/解释错误均为 0。结果只验证接口和测试 provider，生产模型选择与真实语料进入 T007。

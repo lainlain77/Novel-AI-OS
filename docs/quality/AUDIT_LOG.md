@@ -118,3 +118,11 @@ T003 是 Context/Canon 核心的 implemented baseline，可以称为首个可运
 - 5 个无共同词的同义改写 0/5，记录为 FTS 能力边界，不伪装成通过。
 
 P1–P6 未被改变：统一记录、平台外围、题材非架构、能力组合、scope 隔离与 proposal transaction 均保持。ADR-013 的混合检索必须在允许集合内运行，不能通过全库向量检索绕过 ADR-010。
+
+## 2026-09-15 T006 混合检索审计
+
+新增 4 项回归后总计 18/18 通过。spy provider 证明语义通道没有接触 gate 外记录；cache 以 model ID + content hash 区分；provider 版本变化建立新 cache；embedding 故障时 FTS 正常降级。
+
+百万字基准：主故事 1,073,770 字符，总记录 2,162。FTS 语义 Recall@16=0/30，fixture embedding/hybrid=30/30、MRR=1；FTS/hybrid 精确查询均为 30/30。hybrid p95 63.737 ms，安全泄漏、provenance 错误和解释缺失均为 0。cache 增加 528,384 bytes。
+
+审核边界：`FixtureConceptEmbeddingProvider` 是确定性测试替身。结果只能证明 policy order、接口、缓存、融合和指标流程，不能证明真实中文 embedding 质量。T007 保留许可证、模型 hash 和自然语料验证。

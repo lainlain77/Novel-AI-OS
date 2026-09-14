@@ -1,36 +1,35 @@
 # Current Task
 
 Updated: 2026-09-15
-Task-ID: T006
+Task-ID: T007
 Status: ready
-Title: Policy-gated Hybrid Retriever 与语义回归
+Title: 生产级中文 Embedding 候选与真实小说语料评估
 
 ## 接手点
 
-T005 已用固定 seed 生成 1,072,358 字符、2,131 记录的长篇基准。45/45 精确词法查询通过，60 次禁止项零泄漏，p95 66.762 ms；5 个无共享词同义查询 0/5，证明 FTS5 不能单独承担语义召回。详见 [报告](../docs/quality/LONG_CONTEXT_BENCHMARK_T005.md) 与 ADR-013。
+T006 已实现 Policy-gated Retriever/Embedding Adapter、版本化 cache、RRF、fallback 与 provenance。百万字 fixture 的 30 条语义题由 FTS 0/30 提升至 hybrid 30/30，p95 约 64 ms，零泄漏；但使用的是明确标注的概念映射测试 provider，不代表生产语义质量。
 
 ## 目标与范围
 
-实现 Retriever Adapter 与可解释混合融合，在 ADR-010 允许集合内组合 FTS 和 embedding 候选。首轮对比本地可运行方案，记录内容 hash、embedding 模型版本、维度、构建/查询成本和失效；不默认引入独立向量数据库或 GraphRAG。
+选择并验证至少一个可固定版本、许可证清楚、能本地运行的中文/多语 embedding 模型；建立包含真实小说表达的人工相关性语料。比较真实 embedding 与 FTS/hybrid 的质量、速度、体积和增量失效成本，并形成云模型是否必要的证据。
 
 ## 可立即执行的步骤
 
-1. 把 NovelStore 的 eligible records 与候选检索接口分离，保持 hard gate 的单一入口。
-2. 定义 LexicalRetriever、EmbeddingRetriever、FusionResult 与每通道 provenance/score。
-3. 选择一个可固定版本的本地 embedding 基线；若需云服务，先完成接口和脱敏/授权路径，再按 Q012 接入。
-4. 扩充 T005 的同义、隐喻、别名、跨章节指代失败集，至少 30 条语义题。
-5. 比较 FTS only、embedding only、hybrid 的 Recall@k、MRR、p50/p95、索引体积与构建时间；所有方案必须保持零泄漏。
-6. 实现内容 hash 与模型版本驱动的向量失效/重建，避免旧 embedding 静默复用。
+1. 列出候选模型的官方来源、版本、许可证、中文检索基准、维度、量化、最大输入和运行依赖。
+2. 优先选择可离线、可锁版本且许可证允许项目用途的最小候选；记录模型文件 hash，不从不明镜像下载。
+3. 从用户自有或明确许可文本构建真实语料；若没有可用正文，先建立独立可授权的数据导入协议，不用受版权保护小说全文填充仓库。
+4. 人工标注同义、别名、隐喻、指代、伏笔、人物误信和时间边界查询，分离 relevance 与 access policy。
+5. 复跑 FTS/embedding/hybrid 的 Recall@k、MRR、p95、索引体积、构建与增量更新；秘密泄漏必须为 0。
+6. 记录本地/云成本、隐私、日志和失败降级；需要云正文外发时按 Q012 建立 task grant。
 
 ## 完成标准
 
-- 新 retriever 看不到 story/branch/audience/cursor gate 之外的记录；
-- FTS fallback 保持可用，离线或 embedding 失败不破坏精确查询；
-- 语义失败集相对 FTS 有明确、可复现的提升；
-- score、通道、模型版本与来源可在 Context Inspector 中解释；
-- 成本与隐私边界记录清楚，不把相似度当 Canon 置信度；
-- 测试、基准、项目记忆和 GitHub 同步通过。
+- 至少一个真实模型的来源、许可证、版本和 hash 可复核；
+- 真实或明确许可的小说式语料与人工答案可重建；
+- 与 T006 fixture 结果严格区分，禁止把测试 provider 当生产模型；
+- hybrid 在真实语义题上相对 FTS 有稳定收益，且精确题与零泄漏不回退；
+- 资源、成本和隐私足以支持产品选择，相关 ADR/问题/文档同步。
 
 ## 停止条件
 
-若本地 embedding 依赖过重或许可证/供应链不清楚，先保留 adapter、fixture 与比较协议，不下载不明模型。云 embedding 必须由单次任务 grant 控制正文外发；GraphRAG 继续等待多跳关系失败证据。
+没有许可清楚的模型或语料时，保留 T006 adapter 与评估协议，不下载或提交不明文件。未经明确任务授权，不把作者正文或秘密发送到云 embedding 服务。

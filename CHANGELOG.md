@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-09-15 — T006 Policy-gated Hybrid Retriever
+
+- 新增 Retriever/Embedding Provider 接口、SQLite 版本化向量缓存、RRF 融合、词法 fallback 和 Context channel provenance。
+- 新增 30 条无共同词语义回归；百万字 fixture 上 FTS 0/30，fixture embedding/hybrid 30/30，hybrid 精确查询仍为 30/30。
+- 内容 hash 缓存后 hybrid p95 从约 121 ms 降至约 64 ms；数据库缓存增量约 528 KB。
+- T006 安全指标为泄漏 0、来源错误 0、解释缺失 0；自动测试增至 18 项。
+- 明确 fixture provider 不是生产语义模型；真实本地模型与许可语料评估进入 T007。
+
 ## 2026-09-15 — T005 百万字 Context 基准
 
 - 新增固定 seed 的 1,072,358 字符、2,131 记录长篇生成器与可复现 JSON 结果，不提交巨型数据库。
