@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Novel-AI-OS 作者工作台</title>
+  <style>
+    :root { color-scheme: dark; --ink:#f2efe8; --muted:#aaa69e; --panel:#191a1d; --line:#32343a; --gold:#d6a85f; --green:#79b89a; --red:#d67b7b; }
+    * { box-sizing:border-box } body { margin:0; color:var(--ink); background:#101114; font:15px/1.55 system-ui,"Microsoft YaHei",sans-serif }
+    header { padding:24px 5vw 18px; border-bottom:1px solid var(--line); background:linear-gradient(120deg,#201b17,#15171b 65%) }
+    h1 { margin:0; font:600 25px/1.2 Georgia,"Songti SC",serif } header p { margin:7px 0 0; color:var(--muted) }
+    main { display:grid; grid-template-columns:minmax(290px,380px) minmax(0,1fr); gap:18px; padding:18px 5vw 40px }
+    .panel { background:var(--panel); border:1px solid var(--line); border-radius:13px; padding:18px; box-shadow:0 12px 35px #0003 }
+    h2 { margin:0 0 14px; font-size:15px; letter-spacing:.08em; color:#e3c58d }
+    label { display:block; margin:11px 0 5px; color:var(--muted); font-size:13px }
+    input,select,textarea { width:100%; color:var(--ink); background:#111216; border:1px solid #3a3c43; border-radius:8px; padding:9px 10px; font:inherit }
+    textarea { min-height:92px; resize:vertical }
+    .row { display:grid; grid-template-columns:1fr 1fr; gap:9px }
+    button { border:1px solid #4b4e55; color:var(--ink); background:#282a2f; border-radius:8px; padding:9px 12px; cursor:pointer }
+    button.primary { color:#17120c; border-color:var(--gold); background:var(--gold); font-weight:650 } button.good { border-color:var(--green) } button.bad { border-color:var(--red) }
+    .actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px }
+    .status { margin-top:13px; padding:9px 11px; border-radius:8px; background:#111216; color:var(--muted) }
+    .topline { display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:12px }
+    .badge { font-size:12px; color:var(--green); border:1px solid #315b48; border-radius:99px; padding:3px 8px }
+    .cards { display:grid; gap:9px; margin-top:10px }
+    .card { border-left:3px solid var(--gold); background:#121317; padding:10px 12px; border-radius:5px }
+    .meta { color:var(--muted); font-size:12px; margin-top:5px } pre { white-space:pre-wrap; word-break:break-word; margin:0; font:14px/1.6 ui-monospace,"Cascadia Code",monospace }
+    .output { min-height:120px; background:#111216; border-radius:9px; padding:13px }
+    .hidden { display:none } .danger { color:var(--red) }
+    @media(max-width:850px){ main{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+  <header><h1>Novel-AI-OS 作者工作台</h1><p>先看上下文，再生成草稿；Canon 只有在你接受提案后才改变。</p></header>
+  <main>
+    <section class="panel">
+      <h2>创作任务</h2>
+      <div class="row"><div><label>作品</label><input id="story" value="story-loop"></div><div><label>分支</label><input id="branch" value="main"></div></div>
+      <div class="row"><div><label>视角</label><select id="audience"><option value="character">人物 POV</option><option value="reader">读者分析</option><option value="author">作者</option></select></div><div><label>人物</label><input id="pov" value="gu-chen"></div></div>
+      <div class="row"><div><label>场景位置</label><input id="cursor" type="number" value="12"></div><div><label>预算</label><input id="budget" type="number" value="600"></div></div>
+      <label>检索词</label><input id="query" value="KEY">
+      <label><input id="secrets" type="checkbox" style="width:auto"> 允许本任务读取作者秘密</label>
+      <label>创作意图</label><textarea id="instruction">以顾沉的有限视角续写一段，他仍怀疑林晚。</textarea>
+      <div class="actions"><button id="compile">检查上下文</button><button class="primary" id="draft">生成草稿</button><button id="suggest">生成 Canon 提案</button></div>
+      <div class="status" id="status">正在连接本地核心……</div>
+    </section>
+    <section>
+      <div class="panel">
+        <div class="topline"><h2>Context Inspector</h2><span class="badge" id="budgetBadge">尚未编译</span></div>
+        <div class="cards" id="context"><div class="meta">点击“检查上下文”查看模型实际获准读取的内容。</div></div>
+      </div>
+      <div class="panel" style="margin-top:18px">
+        <h2>模型输出</h2><div class="output"><pre id="output">尚未生成。</pre></div>
+        <div id="proposalBox" class="hidden"><div class="meta" id="proposalMeta"></div><div class="actions"><button id="save">放入 Canon Inbox</button><button class="good" id="apply">接受并写入 Canon</button><button class="bad" id="reject">拒绝</button></div></div>
+      </div>
+    </section>
+  </main>
+  <script>
+    let revision=0, proposal=null, saved=false;
+    const $=id=>document.getElementById(id);
+    async function api(path,body){const r=await fetch(path,{method:body?'POST':'GET',headers:{'content-type':'application/json'},body:body?JSON.stringify(body):undefined});const data=await r.json();if(!r.ok)throw new Error(data.error||'请求失败');return data}
+    function task(){const audience=$('audience').value;return {taskId:'ui-'+Date.now(),storyId:$('story').value,branchId:$('branch').value,baseRevision:revision,audience,narrativeCursor:+$('cursor').value,query:$('query').value,tokenBudget:+$('budget').value,povEntityId:audience==='character'?$('pov').value:undefined,includeAuthorSecrets:$('secrets').checked}}
+    function renderPacket(p){$('budgetBadge').textContent=`${p.actualTokens} / ${p.tokenBudget} tokens · r${p.baseRevision}`;$('context').innerHTML=p.sections.map(s=>`<div class="card"><b>${s.role}</b> · ${escapeHtml(s.content)}<div class="meta">${s.recordId} · source r${s.sourceRevision} · ${s.selectedBecause} · ${s.sensitivity}</div></div>`).join('')+(p.omissions.length?`<div class="meta">因预算省略 ${p.omissions.length} 条</div>`:'')}
+    function escapeHtml(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}
+    async function compile(){const p=await api('/api/compile',{task:task()});renderPacket(p);return p}
+    async function generate(outputKind){saved=false;proposal=null;const data=await api('/api/generate',{task:task(),instruction:$('instruction').value,outputKind});renderPacket(data.packet);$('proposalBox').classList.toggle('hidden',!data.proposal);if(data.output.kind==='draft')$('output').textContent=data.output.text;else{$('output').textContent=data.output.suggestion.content+'\n\n'+data.output.rationale;proposal=data.proposal;$('proposalMeta').textContent=`未保存提案 · 基于 Canon r${proposal.baseRevision}`}$('status').textContent=`${data.output.metadata.model} 已返回；Canon 仍为 r${revision}`}
+    $('compile').onclick=()=>compile().then(()=>$('status').textContent=`上下文已检查；Canon r${revision}`).catch(showError);
+    $('draft').onclick=()=>generate('draft').catch(showError); $('suggest').onclick=()=>generate('proposal').catch(showError);
+    $('save').onclick=async()=>{try{await api('/api/proposal/save',{proposal});saved=true;$('proposalMeta').textContent=`Canon Inbox：ready · 基于 r${proposal.baseRevision}`;$('status').textContent='提案已保存，Canon 尚未改变'}catch(e){showError(e)}};
+    $('apply').onclick=async()=>{try{if(!saved)await $('save').onclick();const data=await api('/api/proposal/apply',{proposalId:proposal.proposalId});revision=data.revision;$('proposalMeta').textContent=`已应用 · Canon r${revision}`;$('status').textContent='作者已接受，Canon revision 已递增'}catch(e){showError(e)}};
+    $('reject').onclick=async()=>{try{if(!saved)await $('save').onclick();await api('/api/proposal/reject',{proposalId:proposal.proposalId});$('proposalMeta').textContent='已拒绝 · Canon 未改变';$('status').textContent=`提案已拒绝；Canon 仍为 r${revision}`}catch(e){showError(e)}};
+    function showError(e){$('status').innerHTML=`<span class="danger">${escapeHtml(e.message)}</span>`}
+    api('/api/bootstrap').then(x=>{revision=x.revision;$('status').textContent=`本地核心已连接 · ${x.adapter} · Canon r${revision}`}).catch(showError);
+  </script>
+</body>
+</html>

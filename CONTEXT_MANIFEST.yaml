@@ -3,7 +3,7 @@
   "project": {
     "name": "Novel-AI-OS",
     "design_label": "V5 (historical label; release unverified)",
-    "phase": "context_canon_core_implemented_author_slice_ready",
+    "phase": "author_workflow_slice_implemented_long_scale_ready",
     "product_implementation": "vertical_slice_started",
     "updated": "2026-09-14",
     "audited_baseline": "a4975d94333375076c49e79076776bf954bc1929",
@@ -233,10 +233,21 @@
         "SRC-007"
       ],
       "confirmed_by": "SRC-005"
+    },
+    {
+      "id": "ADR-012",
+      "path": "adr/ADR-012-model-adapter-boundary.md",
+      "status": "accepted",
+      "sources": [
+        "SRC-001",
+        "SRC-005",
+        "SRC-007"
+      ],
+      "confirmed_by": "SRC-005"
     }
   ],
   "current_task": {
-    "id": "T004",
+    "id": "T005",
     "status": "ready",
     "path": "planning/CURRENT_TASK.md"
   },
@@ -300,6 +311,9 @@
       "docs/technical/VERTICAL_SLICE_T003.md",
       "adr/ADR-010-knowledge-gate.md",
       "adr/ADR-011-local-storage-retrieval.md"
+      ,
+      "docs/technical/WORKBENCH_T004.md",
+      "adr/ADR-012-model-adapter-boundary.md"
     ],
     "planning": [
       "docs/planning/PLANNING_SYSTEM.md",
@@ -340,6 +354,9 @@
       "adr/ADR-009-canon-transaction.md",
       "adr/ADR-010-knowledge-gate.md",
       "adr/ADR-011-local-storage-retrieval.md"
+      ,
+      "docs/technical/WORKBENCH_T004.md",
+      "adr/ADR-012-model-adapter-boundary.md"
     ],
     "handoff": [
       "AI_COLLABORATION_PROTOCOL.md",
@@ -353,7 +370,8 @@
     ],
     "product": [
       "docs/product/AUTHOR_WORKFLOWS.md",
-      "docs/architecture/V5_MASTER_BLUEPRINT.md"
+      "docs/architecture/V5_MASTER_BLUEPRINT.md",
+      "docs/technical/WORKBENCH_T004.md"
     ],
     "research": [
       "docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md",
@@ -407,6 +425,10 @@
     },
     {
       "path": "adr/ADR-011-local-storage-retrieval.md",
+      "authority": "accepted_decision"
+    },
+    {
+      "path": "adr/ADR-012-model-adapter-boundary.md",
       "authority": "accepted_decision"
     },
     {
@@ -510,6 +532,10 @@
       "authority": "working_record"
     },
     {
+      "path": "docs/technical/WORKBENCH_T004.md",
+      "authority": "working_record"
+    },
+    {
       "path": "GLOSSARY.md",
       "authority": "working_record"
     },
@@ -566,6 +592,10 @@
       "authority": "working_record"
     },
     {
+      "path": "public/index.html",
+      "authority": "tool"
+    },
+    {
       "path": "PROJECT_HISTORY.md",
       "authority": "provenance"
     },
@@ -590,6 +620,14 @@
       "authority": "tool"
     },
     {
+      "path": "src/model.ts",
+      "authority": "tool"
+    },
+    {
+      "path": "src/server.ts",
+      "authority": "tool"
+    },
+    {
       "path": "src/store.ts",
       "authority": "tool"
     },
@@ -598,11 +636,19 @@
       "authority": "tool"
     },
     {
+      "path": "src/workflow.ts",
+      "authority": "tool"
+    },
+    {
       "path": "SETTLED_DECISIONS.md",
       "authority": "normative"
     },
     {
       "path": "tests/context-canon.test.ts",
+      "authority": "tool"
+    },
+    {
+      "path": "tests/workflow.test.ts",
       "authority": "tool"
     }
   ]

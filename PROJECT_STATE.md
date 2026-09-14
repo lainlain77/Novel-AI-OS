@@ -4,9 +4,9 @@ Updated: 2026-09-14
 
 ## 当前目标与阶段
 
-将 Novel-AI-OS 从可接手的架构资料库推进为可运行的 V5 最小产品。首个 Context/Canon 核心切片已经完成，下一步连接 Model Adapter 与作者工作台。V5 仍是设计标签，不是已发布软件版本。
+将 Novel-AI-OS 从可接手的架构资料库推进为可运行的 V5 最小产品。Context/Canon 核心、Model Adapter 和本地作者工作台已经完成首轮切片，下一步验证百万字规模。V5 仍是设计标签，不是已发布软件版本。
 
-当前阶段：Architecture Consolidation completed / Context-Canon Core implemented / Author Workflow Slice ready。
+当前阶段：Context-Canon Core implemented / Author Workflow Slice implemented / Long-scale Benchmark ready。
 
 ## 已有事实
 
@@ -21,7 +21,8 @@ Updated: 2026-09-14
 | 作者工作流 | 新建、规划、写作、Canon Inbox、旧章修改、导入、审查、Library、风格和恢复路径已整理 | [作者工作流](docs/product/AUTHOR_WORKFLOWS.md) |
 | 首个工程基线 | TypeScript + SQLite/FTS5 已定案并实现；内容寻址大文本和 Model Adapter 待下一切片 | [ADR-011](adr/ADR-011-local-storage-retrieval.md) |
 | Context/Canon 代码 | implemented_baseline；Policy Gate、Context Packet、Canon transaction、fixture 和 10 项测试 | [T003 记录](docs/technical/VERTICAL_SLICE_T003.md) |
-| 完整创作产品 | not_completed；模型、作者界面、导入、发布与云同步未实现 | [当前任务](planning/CURRENT_TASK.md) |
+| Model 与作者流程 | fake adapter、本地 API、Context Inspector、草稿与 Canon Inbox 已实现；4 项新增测试 | [T004 记录](docs/technical/WORKBENCH_T004.md) |
+| 完整创作产品 | not_completed；真实模型、完整编辑器、导入、发布与云同步未实现 | [当前任务](planning/CURRENT_TASK.md) |
 
 ## 设计状态边界
 
@@ -30,7 +31,7 @@ Updated: 2026-09-14
 - research completed：Context Engine 外部研究；不等于 V5 性能已经验证。
 - reconstructed audit：七技能方法融合；不等于原包逐文件供应链审计。
 - implemented baseline：ADR-008–011、SQLite/FTS5、Context/Canon 核心与确定性测试；适用范围可由后续实测 ADR 更新。
-- not implemented：模型调用、UI、内容寻址大文本、平台发布、云同步和完整产品测试。
+- not implemented：真实模型调用、完整编辑器、内容寻址大文本、平台发布、云同步和完整产品测试。
 
 ## 尚不能宣称完成
 
@@ -40,7 +41,7 @@ Updated: 2026-09-14
 
 ## 当前下一步
 
-执行 [T004](planning/CURRENT_TASK.md)：定义可替换 Model Adapter，用 deterministic fake 跑通任务、Context Inspector、草稿、结构化提案、接受/拒绝和 stale 提示，再做最小作者工作台。真实云模型和正文外发策略由 Q012 单独决定。
+执行 [T005](planning/CURRENT_TASK.md)：生成可复现的百万字长篇 fixture，测量导入、FTS 检索、Policy Gate、Context Packet 预算、隔离与失效延迟，形成是否引入向量混合检索的证据。真实云模型和正文外发策略仍由 Q012 单独决定。
 
 全部未决项以 [OPEN_QUESTIONS](planning/OPEN_QUESTIONS.md) 为主记录，路线见 [ROADMAP](planning/ROADMAP.md)。
 

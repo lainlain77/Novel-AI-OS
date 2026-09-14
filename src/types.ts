@@ -111,3 +111,20 @@ export interface ChangeProposal {
   changes: AtomicChange[];
   evidence: ProvenanceRef[];
 }
+
+export interface ModelMetadata {
+  provider: string;
+  model: string;
+  generatedAt: string;
+  inputTokens: number;
+  outputTokens: number;
+}
+
+export type ModelOutput =
+  | { kind: "draft"; text: string; metadata: ModelMetadata }
+  | {
+      kind: "proposal_suggestion";
+      suggestion: Pick<StoryRecordInput, "kind" | "role" | "visibility" | "sensitivity" | "knowerId" | "content" | "payload">;
+      rationale: string;
+      metadata: ModelMetadata;
+    };

@@ -16,7 +16,7 @@ Updated: 2026-09-14
 | Q006 | P1 | open | Library / Blueprint / Instance 派生与版本 | 架构 AI；作者评审 | S2/S6、ADR-007 |
 | Q007 | P2 | local_baseline_accepted | 产品技术栈、存储及部署形态 | 实现 AI | ADR-011；UI/云部署仍待 Q009/Q012 |
 | Q008 | P1 | resolved_baseline | 记忆逻辑边界、摘要失效及 AI 工作流契约 | 架构 AI | ADR-008–010、T003 |
-| Q009 | P2 | open | 最小作者界面和创作操作路径 | 产品/写作 AI；作者评审 | S3/S4 和候选工作流 |
+| Q009 | P2 | minimal_workbench_implemented | 最小作者界面和创作操作路径 | 产品/写作 AI；作者评审 | T004；完整编辑器与可用性评审仍开放 |
 | Q010 | P1 | open | 无历史依赖的独立新会话接手验收 | 独立审查 AI/协作者 | 可访问的本轮仓库版本 |
 | Q011 | P1 | minimal_fixture_complete_long_scale_open | Context/Canon 评估夹具与门槛 | 实现/评估 AI | T003；百万字语料与模型指标待扩充 |
 | Q012 | P2 | open | 隐私、日志、模型供应商与秘密数据策略 | 架构/安全 AI；作者评审 | Q007、Model Adapter |
@@ -73,9 +73,9 @@ T003 已提供代码和运行证据，不再只是由文档脚本推断技术栈
 
 ## Q009 — 作者操作路径
 
-候选：计划 → 草稿 → 事实差异 → 确认，或在清楚展示范围的情况下合并部分操作。下一步设计一个短场景的界面/流程草案，由作者试走。
+T004 已实现任务/POV → Context Inspector → 草稿/建议 → Canon Inbox → 接受/拒绝的本地工作台。界面显示来源 revision、入选原因、预算、敏感级别和 Canon revision，模型层不能直接写入。
 
-关闭条件：作者能区分草稿/提案/Canon，完成接受、拒绝、查看来源和冲突处理；工作流经评审，UI 技术再按 Q007 决定。
+自动测试已覆盖接受与拒绝。完整编辑、diff 高亮、stale 冲突交互、撤销、可访问性和作者实际试走仍开放；见 [T004](../docs/technical/WORKBENCH_T004.md)。
 
 ## Q010 — 独立接手测试
 

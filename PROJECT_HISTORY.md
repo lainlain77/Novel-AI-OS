@@ -41,3 +41,7 @@ Updated: 2026-09-14
 ## 2026-09-14 T003 纵向切片
 
 项目首次加入创作运行时代码：TypeScript 类型与应用存储、SQLite/FTS5 schema、任务感知 Policy Gate、Context Packet、Canon proposal transaction、派生失效，以及两作品/两分支 fixture。10 项确定性回归在 Node.js 24.19.0 通过。该里程碑证明核心隔离和事务边界可执行，不代表完整编辑器、模型调用或百万字性能已经完成。ADR-008–011 依据用户授权和运行证据 accepted；下一任务为 T004。
+
+## 2026-09-14 T004 作者流程切片
+
+新增可替换 Model Adapter、deterministic fake、应用服务、本地 API 和单页作者工作台。模型只看到 Context Packet，草稿与 suggestion 不具备 Canon 写权限；proposal 必须由作者保存并接受。新增 4 项测试后共 14 项通过。ADR-012 记录模型权限边界；下一阶段用 T005 测试百万字规模。

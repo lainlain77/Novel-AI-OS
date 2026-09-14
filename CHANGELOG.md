@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-09-14 — T004 Model Adapter 与作者工作台
+
+- 新增无 Canon 写权限的 Model Adapter 契约和 deterministic fake；模型只接收已过滤 Context Packet，只返回 Draft 或 ProposalSuggestion。
+- 新增应用服务、本地 HTTP API 与作者工作台，显示任务、POV、秘密授权、Context Inspector、草稿、Canon Inbox、接受和拒绝。
+- 新增 4 项工作流/API 测试；连同 T003 共 14 项通过，无需账号、密钥或外部服务。
+- 接受 ADR-012；当前任务推进到 T005 百万字长篇基准。
+
 ## 2026-09-14 — T003 可运行 Context/Canon 核心
 
 - 新增零第三方依赖的 TypeScript + SQLite/FTS5 纵向切片，实现作品/分支/revision、知识与秘密 Policy Gate、Context Packet、预算和来源指纹。

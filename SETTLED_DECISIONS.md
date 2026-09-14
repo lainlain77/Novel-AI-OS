@@ -17,6 +17,7 @@ accepted 表示设计方向有来源，并不表示已有软件实现。主依�
 | D009 | Canon 变更绑定基线并原子提交 | 旧批准不能覆盖新 Canon，多项失败不能部分写入 | [ADR-009](adr/ADR-009-canon-transaction.md) |
 | D010 | 知识与秘密先硬过滤再检索 | 视角和未来信息边界是正确性条件 | [ADR-010](adr/ADR-010-knowledge-gate.md) |
 | D011 | 首版运行基线为 TypeScript + SQLite/FTS5 | 先用最低复杂度验证隔离、版本和事务，再按失败集扩展 | [ADR-011](adr/ADR-011-local-storage-retrieval.md) |
+| D012 | Model Adapter 只读 Context Packet 且不能写 Canon | 模型和供应商替换不能改变数据权限 | [ADR-012](adr/ADR-012-model-adapter-boundary.md) |
 
 以下不在已确定清单：向量/Graph RAG/长上下文的扩展门槛、模型或供应商、完整 Kernel schema、事件溯源、分支合并算法、最终界面框架、Blueprint 详细语义和云部署。[ADR-007](adr/ADR-007-blueprint-derivation.md) 仍为 proposed。ADR-011 只约束首版基线，不声称 SQLite/FTS5 永远足够。
 

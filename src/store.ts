@@ -122,6 +122,12 @@ export class NovelStore {
     return Number(row.current_revision);
   }
 
+  getProjectId(storyId: string): string {
+    const row = this.db.prepare("SELECT project_id FROM stories WHERE id = ?").get(storyId) as Row | undefined;
+    if (!row) throw new Error(`Unknown story: ${storyId}`);
+    return String(row.project_id);
+  }
+
   seedAcceptedRecord(input: StoryRecordInput): void {
     const revision = this.getRevision(input.storyId, input.branchId);
     this.insertRecord(input, revision);
@@ -436,6 +442,15 @@ export class NovelStore {
   proposalStatus(proposalId: string): string | undefined {
     const row = this.db.prepare("SELECT status FROM proposals WHERE id = ?").get(proposalId) as Row | undefined;
     return row ? String(row.status) : undefined;
+  }
+
+  rejectProposal(proposalId: string): void {
+    const result = this.db.prepare(
+      "UPDATE proposals SET status = 'rejected' WHERE id = ? AND status = 'ready'",
+    ).run(proposalId);
+    if (Number(result.changes) !== 1) {
+      throw new InvalidProposalError("Only a ready proposal can be rejected");
+    }
   }
 }
 

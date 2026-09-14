@@ -97,3 +97,13 @@ Baseline: a4975d94333375076c49e79076776bf954bc1929
 ### 结论边界
 
 T003 是 Context/Canon 核心的 implemented baseline，可以称为首个可运行纵向切片。它不是完整创作产品，也没有验证百万字性能、语义召回、真实模型、云隐私或多人合并。相应开放项继续保留。
+
+## 2026-09-14 T004 工作流审计
+
+- ModelAdapter 没有 NovelStore 引用，只接收 Context Packet；P6 通过。
+- fake draft 只包含获准的顾沉 POV 内容，未出现作者秘密、世界真相或林晚知识；ADR-010 通过。
+- suggestion、prepared proposal 和 ready proposal 均不改变 Canon；apply 后 revision 才从 0 变 1，reject 保持 0；ADR-009/012 通过。
+- 本地页面和 `/api/compile` 冒烟测试通过，无外部账号或服务。
+- T003 10 项与 T004 4 项合计 14/14 通过，一次总时长约 0.41 秒。
+
+界面仍是最小工作流验证器，未完成真实模型、持久化项目、完整编辑器或作者可用性评审。T005 继续处理百万字规模，Q009/Q012 保留产品与隐私范围。

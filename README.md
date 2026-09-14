@@ -23,12 +23,12 @@
 | Context Engine 的完整研究 | [研究报告](docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md)、[模块规格](docs/context/CONTEXT_ENGINE.md) |
 | 七技能怎样融合 | [七技能审计与融合 V1.0](docs/research/SEVEN_SKILLS_AUDIT_AND_FUSION_V1.md) |
 | 作者实际怎样操作 | [作者工作流](docs/product/AUTHOR_WORKFLOWS.md) |
-| 首个可运行实现 | [T003 实现与验证](docs/technical/VERTICAL_SLICE_T003.md)、`src/`、`tests/` |
+| 可运行实现 | [T003 Context/Canon 核心](docs/technical/VERTICAL_SLICE_T003.md)、[T004 作者工作台](docs/technical/WORKBENCH_T004.md)、`src/`、`tests/` |
 | 机器怎样按需读取 | [Context Manifest](CONTEXT_MANIFEST.yaml) |
 | 如何证明可以接手 | [接手验收](docs/quality/HANDOFF_ACCEPTANCE.md)、[审计记录](docs/quality/AUDIT_LOG.md) |
 
 ## 本地自检
 
-仓库根目录执行 `npm run validate` 可同时检查项目记忆和 Context/Canon 回归；`npm run demo` 可查看人物 POV 的 Context Packet。需要 Node.js 24；不需要安装第三方包。完整创作产品仍在开发中。
+仓库根目录执行 `npm run validate` 可同时检查项目记忆和运行回归；`npm run demo` 查看人物 POV 的 Context Packet；`npm run workbench` 启动本地作者工作台。需要 Node.js 24；不需要安装第三方包。完整编辑器仍在开发中。
 
 V5 是既有资料中的设计称呼，尚未核实存在 V1–V4 的完整记录或 V5 软件发布。见 [来源登记](memory/SOURCE_REGISTER.md)。
