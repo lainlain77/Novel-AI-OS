@@ -1,6 +1,6 @@
 # 实现边界与技术待决事项
 
-Status: implemented_baseline
+Status: implemented_and_measured_baseline
 Sources: SRC-003, SRC-004
 
 当前仓库包含文档、项目记忆检查脚本、Context/Canon 纵向切片、可替换 Model Adapter、deterministic fake 和最小作者工作台。SQLite schema、FTS5、Policy Gate、Context Packet、Canon transaction 与本地 UI 已实现；真实模型、完整编辑器、发布适配、云服务和完整产品仍未实现。
@@ -17,7 +17,7 @@ Q007：单作者/多人、离线需求、数据可携带性、恢复需求和预
 
 T002 已形成 [核心契约与 S1–S6 纸面演练](../architecture/CORE_CONTRACTS.md)。T003 已实现本地优先、模块化单体、SQLite + FTS5；T004 已实现无 Canon 写权的 Model Adapter 与浏览器工作台。运行证据见 [T003](VERTICAL_SLICE_T003.md) 和 [T004](WORKBENCH_T004.md)。内容寻址大文本和正式桌面壳仍是后续边界。
 
-这是首个纵向切片的工程基线，不是永久供应商锁定，也不证明性能达标。向量扩展、图数据库、多 Agent、分布式服务和云同步只有在评估显示必要时引入。详细理由、成本和边界见 [V5 总体蓝图](../architecture/V5_MASTER_BLUEPRINT.md) 与 [Context Engine 研究](../research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md)。
+T005 已在百万字合成长篇上证明精确 FTS、隔离和延迟基线达标，同时测得无共享词同义查询 0/5。ADR-013 因此接受 Policy-gated Hybrid Retriever 边界；具体 embedding 模型、向量存储和融合仍需 T006 比较。图数据库、多 Agent、分布式服务和云同步只有在评估显示必要时引入。详细结果见 [T005 报告](../quality/LONG_CONTEXT_BENCHMARK_T005.md)。
 
 ## 实现完成的定义
 

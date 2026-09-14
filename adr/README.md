@@ -1,6 +1,6 @@
 # ADR 索引
 
-ADR 状态表示决策权威，不表示完整产品完成。accepted 要有作者确认或明确授权依据；ADR-008–012 依据用户授权的实现基线和运行证据定案。ADR-007 仍是提案。
+ADR 状态表示决策权威，不表示完整产品完成。accepted 要有作者确认或明确授权依据；ADR-008–013 依据用户授权的实现基线和运行证据定案。ADR-007 仍是提案。
 
 | ADR | 状态 | 内容 |
 | --- | --- | --- |
@@ -17,6 +17,7 @@ ADR 状态表示决策权威，不表示完整产品完成。accepted 要有作�
 | [ADR-010](ADR-010-knowledge-gate.md) | accepted | 知识与秘密硬过滤先于检索排序 |
 | [ADR-011](ADR-011-local-storage-retrieval.md) | accepted | 本地 SQLite 与 FTS5 首版基线 |
 | [ADR-012](ADR-012-model-adapter-boundary.md) | accepted | Model Adapter 无 Canon 写权限 |
+| [ADR-013](ADR-013-policy-gated-hybrid-retrieval.md) | accepted | Policy Gate 内的可替换混合检索 |
 
 ## 状态维护
 

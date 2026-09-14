@@ -45,3 +45,7 @@ Updated: 2026-09-14
 ## 2026-09-14 T004 作者流程切片
 
 新增可替换 Model Adapter、deterministic fake、应用服务、本地 API 和单页作者工作台。模型只看到 Context Packet，草稿与 suggestion 不具备 Canon 写权限；proposal 必须由作者保存并接受。新增 4 项测试后共 14 项通过。ADR-012 记录模型权限边界；下一阶段用 T005 测试百万字规模。
+
+## 2026-09-15 T005 百万字基准
+
+固定 seed 生成 1,072,358 个主故事字符和 2,131 条记录。精确词法用例 45/45、禁止项 0/60 泄漏，p95 66.762 ms；无共享词同义改写 0/5。数据支持保留 SQLite/FTS5 为安全与精确 fallback，同时以 ADR-013 增加 policy-gated hybrid retriever 边界。原始 JSON、硬件与复现命令已入库。

@@ -1,0 +1,43 @@
+{
+  "schema": "novel-ai-os-long-context-benchmark-v1",
+  "seed": "novel-ai-os-t005-v1",
+  "measuredAt": "2026-09-14T16:05:39.895Z",
+  "environment": {
+    "node": "v24.16.0",
+    "platform": "win32-x64",
+    "cpu": "AMD Ryzen 7 4800H with Radeon Graphics",
+    "logicalCpus": 16,
+    "memoryGiB": 15.4
+  },
+  "fixture": {
+    "records": 2131,
+    "mainStoryCharacters": 1072358,
+    "targetCharacters": 1000000
+  },
+  "storage": {
+    "databaseBytes": 9187328,
+    "buildMs": 324.518
+  },
+  "retrieval": {
+    "measuredQueries": 70,
+    "requiredCases": 45,
+    "recall": 1,
+    "forbiddenChecks": 60,
+    "leaks": 0,
+    "p50Ms": 58.108,
+    "p95Ms": 66.762,
+    "maxMs": 70.186,
+    "averageBudgetUtilization": 0.0785,
+    "provenanceErrors": 0
+  },
+  "semanticLexicalBaseline": {
+    "cases": 5,
+    "recall": 0,
+    "expectedLimitation": "FTS5 cannot match paraphrases with no shared lexical token"
+  },
+  "invalidation": {
+    "appliedMs": 2.866,
+    "derivedInvalidated": true
+  },
+  "failures": []
+}

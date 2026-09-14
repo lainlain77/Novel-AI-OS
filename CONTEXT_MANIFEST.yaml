@@ -3,9 +3,9 @@
   "project": {
     "name": "Novel-AI-OS",
     "design_label": "V5 (historical label; release unverified)",
-    "phase": "author_workflow_slice_implemented_long_scale_ready",
+    "phase": "million_character_baseline_completed_hybrid_retrieval_ready",
     "product_implementation": "vertical_slice_started",
-    "updated": "2026-09-14",
+    "updated": "2026-09-15",
     "audited_baseline": "a4975d94333375076c49e79076776bf954bc1929",
     "historical_coverage": "partial",
     "independent_handoff_test": "pending",
@@ -244,10 +244,21 @@
         "SRC-007"
       ],
       "confirmed_by": "SRC-005"
+    },
+    {
+      "id": "ADR-013",
+      "path": "adr/ADR-013-policy-gated-hybrid-retrieval.md",
+      "status": "accepted",
+      "sources": [
+        "SRC-004",
+        "SRC-005",
+        "SRC-007"
+      ],
+      "confirmed_by": "SRC-005"
     }
   ],
   "current_task": {
-    "id": "T005",
+    "id": "T006",
     "status": "ready",
     "path": "planning/CURRENT_TASK.md"
   },
@@ -314,6 +325,9 @@
       ,
       "docs/technical/WORKBENCH_T004.md",
       "adr/ADR-012-model-adapter-boundary.md"
+      ,
+      "docs/quality/LONG_CONTEXT_BENCHMARK_T005.md",
+      "adr/ADR-013-policy-gated-hybrid-retrieval.md"
     ],
     "planning": [
       "docs/planning/PLANNING_SYSTEM.md",
@@ -357,6 +371,9 @@
       ,
       "docs/technical/WORKBENCH_T004.md",
       "adr/ADR-012-model-adapter-boundary.md"
+      ,
+      "docs/quality/LONG_CONTEXT_BENCHMARK_T005.md",
+      "adr/ADR-013-policy-gated-hybrid-retrieval.md"
     ],
     "handoff": [
       "AI_COLLABORATION_PROTOCOL.md",
@@ -375,7 +392,8 @@
     ],
     "research": [
       "docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md",
-      "docs/research/SEVEN_SKILLS_AUDIT_AND_FUSION_V1.md"
+      "docs/research/SEVEN_SKILLS_AUDIT_AND_FUSION_V1.md",
+      "docs/quality/LONG_CONTEXT_BENCHMARK_T005.md"
     ]
   },
   "documents": [
@@ -432,6 +450,10 @@
       "authority": "accepted_decision"
     },
     {
+      "path": "adr/ADR-013-policy-gated-hybrid-retrieval.md",
+      "authority": "accepted_decision"
+    },
+    {
       "path": "adr/README.md",
       "authority": "normative"
     },
@@ -446,6 +468,14 @@
     {
       "path": "AI_START_HERE.md",
       "authority": "normative"
+    },
+    {
+      "path": "benchmarks/long-context.ts",
+      "authority": "tool"
+    },
+    {
+      "path": "benchmarks/results/t005-local-2026-09-15.json",
+      "authority": "provenance"
     },
     {
       "path": "CHANGELOG.md",
@@ -513,6 +543,10 @@
     },
     {
       "path": "docs/quality/HANDOFF_ACCEPTANCE.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "docs/quality/LONG_CONTEXT_BENCHMARK_T005.md",
       "authority": "working_record"
     },
     {

@@ -1,12 +1,12 @@
 # PROJECT STATE
 
-Updated: 2026-09-14
+Updated: 2026-09-15
 
 ## 当前目标与阶段
 
-将 Novel-AI-OS 从可接手的架构资料库推进为可运行的 V5 最小产品。Context/Canon 核心、Model Adapter 和本地作者工作台已经完成首轮切片，下一步验证百万字规模。V5 仍是设计标签，不是已发布软件版本。
+将 Novel-AI-OS 从可接手的架构资料库推进为可运行的 V5 最小产品。Context/Canon 核心、Model Adapter、本地作者工作台和百万字合成基准已经完成，下一步实现 Policy-gated Hybrid Retriever。V5 仍是设计标签，不是已发布软件版本。
 
-当前阶段：Context-Canon Core implemented / Author Workflow Slice implemented / Long-scale Benchmark ready。
+当前阶段：Context-Canon Core implemented / Author Workflow Slice implemented / Million-character Benchmark completed / Hybrid Retrieval ready。
 
 ## 已有事实
 
@@ -22,6 +22,7 @@ Updated: 2026-09-14
 | 首个工程基线 | TypeScript + SQLite/FTS5 已定案并实现；内容寻址大文本和 Model Adapter 待下一切片 | [ADR-011](adr/ADR-011-local-storage-retrieval.md) |
 | Context/Canon 代码 | implemented_baseline；Policy Gate、Context Packet、Canon transaction、fixture 和 10 项测试 | [T003 记录](docs/technical/VERTICAL_SLICE_T003.md) |
 | Model 与作者流程 | fake adapter、本地 API、Context Inspector、草稿与 Canon Inbox 已实现；4 项新增测试 | [T004 记录](docs/technical/WORKBENCH_T004.md) |
+| 百万字基准 | 1,072,358 字符；精确召回 45/45、禁止项泄漏 0/60、p95 66.762 ms；同义改写 0/5 | [T005 报告](docs/quality/LONG_CONTEXT_BENCHMARK_T005.md) |
 | 完整创作产品 | not_completed；真实模型、完整编辑器、导入、发布与云同步未实现 | [当前任务](planning/CURRENT_TASK.md) |
 
 ## 设计状态边界
@@ -30,7 +31,8 @@ Updated: 2026-09-14
 - proposed design baseline：V5 总体蓝图、作者工作流及尚未实现的模块规格。
 - research completed：Context Engine 外部研究；不等于 V5 性能已经验证。
 - reconstructed audit：七技能方法融合；不等于原包逐文件供应链审计。
-- implemented baseline：ADR-008–011、SQLite/FTS5、Context/Canon 核心与确定性测试；适用范围可由后续实测 ADR 更新。
+- implemented baseline：ADR-008–012、SQLite/FTS5、Context/Canon、Model Adapter、工作台与 14 项测试。
+- measured baseline：T005 百万字合成测试；ADR-013 接受 hybrid 边界，但具体 embedding 实现尚未选择。
 - not implemented：真实模型调用、完整编辑器、内容寻址大文本、平台发布、云同步和完整产品测试。
 
 ## 尚不能宣称完成
@@ -41,7 +43,7 @@ Updated: 2026-09-14
 
 ## 当前下一步
 
-执行 [T005](planning/CURRENT_TASK.md)：生成可复现的百万字长篇 fixture，测量导入、FTS 检索、Policy Gate、Context Packet 预算、隔离与失效延迟，形成是否引入向量混合检索的证据。真实云模型和正文外发策略仍由 Q012 单独决定。
+执行 [T006](planning/CURRENT_TASK.md)：实现 Policy-gated Retriever Adapter、版本化 embedding 缓存和可解释融合，用扩展语义失败集比较 FTS/embedding/hybrid。真实云模型和正文外发策略仍由 Q012 单独决定。
 
 全部未决项以 [OPEN_QUESTIONS](planning/OPEN_QUESTIONS.md) 为主记录，路线见 [ROADMAP](planning/ROADMAP.md)。
 

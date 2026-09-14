@@ -24,6 +24,7 @@
 | 七技能怎样融合 | [七技能审计与融合 V1.0](docs/research/SEVEN_SKILLS_AUDIT_AND_FUSION_V1.md) |
 | 作者实际怎样操作 | [作者工作流](docs/product/AUTHOR_WORKFLOWS.md) |
 | 可运行实现 | [T003 Context/Canon 核心](docs/technical/VERTICAL_SLICE_T003.md)、[T004 作者工作台](docs/technical/WORKBENCH_T004.md)、`src/`、`tests/` |
+| 百万字实测 | [T005 基准报告](docs/quality/LONG_CONTEXT_BENCHMARK_T005.md)、`npm run benchmark` |
 | 机器怎样按需读取 | [Context Manifest](CONTEXT_MANIFEST.yaml) |
 | 如何证明可以接手 | [接手验收](docs/quality/HANDOFF_ACCEPTANCE.md)、[审计记录](docs/quality/AUDIT_LOG.md) |
 

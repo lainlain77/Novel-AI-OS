@@ -133,6 +133,26 @@ export class NovelStore {
     this.insertRecord(input, revision);
   }
 
+  seedAcceptedRecords(inputs: StoryRecordInput[]): void {
+    this.db.exec("BEGIN IMMEDIATE");
+    try {
+      const revisions = new Map<string, number>();
+      for (const input of inputs) {
+        const key = `${input.storyId}\u0000${input.branchId}`;
+        let revision = revisions.get(key);
+        if (revision === undefined) {
+          revision = this.getRevision(input.storyId, input.branchId);
+          revisions.set(key, revision);
+        }
+        this.insertRecord(input, revision);
+      }
+      this.db.exec("COMMIT");
+    } catch (error) {
+      if (this.db.isTransaction) this.db.exec("ROLLBACK");
+      throw error;
+    }
+  }
+
   addDependency(derivedRecordId: string, sourceRecordId: string): void {
     const source = this.getRecord(sourceRecordId);
     const derived = this.getRecord(derivedRecordId);

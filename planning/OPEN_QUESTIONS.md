@@ -1,6 +1,6 @@
 # Open Questions
 
-Updated: 2026-09-14
+Updated: 2026-09-15
 
 本文件是问题主记录。resolved_baseline 表示首版边界已有决定与运行证据，不代表后续规模和扩展不再复测。表中负责者是工作角色，不表示已分派给某个独立 AI。关闭或收敛时保留编号、结论、证据、日期及关联 ADR，不能直接删掉问题。
 
@@ -9,7 +9,7 @@ Updated: 2026-09-14
 | ID | 优先级 | 状态 | 问题 | 推进角色 | 依赖 |
 | --- | --- | --- | --- | --- | --- |
 | Q001 | P0 | open | 完整历史与来源覆盖 | 资料整理 AI；原文访问需作者/平台提供 | 原会话、早期分支或原始资料可读取 |
-| Q002 | P1 | research_complete_decision_open | 长篇 Context Retrieval 策略 | 架构/实现 AI | T003 评估、Q005/Q008 |
+| Q002 | P1 | lexical_validated_hybrid_accepted | 长篇 Context Retrieval 策略 | 架构/实现 AI | T005、ADR-013；具体 embedding 待 T006 |
 | Q003 | P1 | open | Capability 依赖、冲突、范围与升级 | 架构 AI | S1 及通用 Kernel 草案 |
 | Q004 | P1 | resolved_baseline | Canon 确认、版本、并发及恢复 | 架构 AI；作者评审 | ADR-009、T003；多人合并见 Q014 |
 | Q005 | P1 | baseline_implemented_inference_open | 世界事实、角色知识和读者可见范围 | 架构/写作 AI | ADR-010、T003；自动推断评估待 Q011 |
@@ -18,7 +18,7 @@ Updated: 2026-09-14
 | Q008 | P1 | resolved_baseline | 记忆逻辑边界、摘要失效及 AI 工作流契约 | 架构 AI | ADR-008–010、T003 |
 | Q009 | P2 | minimal_workbench_implemented | 最小作者界面和创作操作路径 | 产品/写作 AI；作者评审 | T004；完整编辑器与可用性评审仍开放 |
 | Q010 | P1 | open | 无历史依赖的独立新会话接手验收 | 独立审查 AI/协作者 | 可访问的本轮仓库版本 |
-| Q011 | P1 | minimal_fixture_complete_long_scale_open | Context/Canon 评估夹具与门槛 | 实现/评估 AI | T003；百万字语料与模型指标待扩充 |
+| Q011 | P1 | synthetic_long_scale_complete_natural_open | Context/Canon 评估夹具与门槛 | 实现/评估 AI | T005；自然语料、生成质量与多次运行待扩充 |
 | Q012 | P2 | open | 隐私、日志、模型供应商与秘密数据策略 | 架构/安全 AI；作者评审 | Q007、Model Adapter |
 | Q013 | P2 | open | 外部 Skill/插件的版本、许可、权限和供应链治理 | 架构/安全 AI | 七技能 V1.1 原包复核 |
 | Q014 | P2 | open | 多人协作、分支合并和云同步边界 | 架构/实现 AI；作者评审 | Q004、单作者纵向切片 |
@@ -31,9 +31,9 @@ Updated: 2026-09-14
 
 ## Q002 — Context 选型
 
-研究基线已完成，推荐首版采用权限硬过滤 + 结构化查询 + FTS/BM25 + 适度长上下文 + 可失效摘要；向量和图扩展按评估启用。详见 [研究报告](../docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md)。下一步按 T003 制作标准答案并跑消融，记录覆盖、隔离、来源、预算和失效表现。
+研究基线与 T005 百万字合成实测已完成。权限硬过滤 + FTS5 在精确查询上 45/45、泄漏 0/60、p95 66.762 ms；无共享词同义查询 0/5。ADR-013 已决定在 Policy Gate 内加入可替换语义通道，FTS 保持 fallback。
 
-关闭条件：有可复核语料/任务、实测结果、预算及范围限制、选型理由和被接受的 ADR。研究报告本身不关闭运行时选型问题；模型/供应商变化时注明测试日期。
+T006 需在扩展语义集上比较 embedding/hybrid；自然小说、模型生成质量和供应商变化仍需注明数据/版本/日期。GraphRAG 继续等待多跳失败证据。
 
 ## Q003 — 能力组合
 
@@ -85,7 +85,7 @@ T004 已实现任务/POV → Context Inspector → 草稿/建议 → Canon Inbox
 
 ## Q011 — 评估夹具与门槛
 
-T003 已建立两部作品、两个分支和 10 项固定回归，覆盖循环、同名人物、误信、作者秘密、未来揭示、过时摘要、stale approval、失败回滚和预算不足。Library 升级、旧章重写、百万字规模、真实 tokenizer、语义召回/生成质量、阈值和失败集仍待扩充，因此本问题只完成 minimal fixture。
+T003 建立小型安全回归；T005 增加固定 seed 的 1,072,358 字符、2,131 记录、70 次编译基准。精确召回、零泄漏、来源、延迟和失效门槛通过，语义词法基线 0/5。自然小说、Library 升级、旧章重写、真实 tokenizer、语义/生成质量、多次运行分布和人工标注仍待扩充。
 
 ## Q012 — 隐私与模型数据策略
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-09-15 — T005 百万字 Context 基准
+
+- 新增固定 seed 的 1,072,358 字符、2,131 记录长篇生成器与可复现 JSON 结果，不提交巨型数据库。
+- 45/45 精确召回、60 次禁止项零泄漏、来源错误 0；Context p50 58.108 ms、p95 66.762 ms，派生失效 2.866 ms。
+- 5 个无共享词同义改写 0/5，确认 FTS5 不能单独承担语义检索。
+- 接受 ADR-013：在 Policy Gate 允许集合内加入可替换混合检索，暂不照搬独立向量库或 GraphRAG。
+
 ## 2026-09-14 — T004 Model Adapter 与作者工作台
 
 - 新增无 Canon 写权限的 Model Adapter 契约和 deterministic fake；模型只接收已过滤 Context Packet，只返回 Draft 或 ProposalSuggestion。

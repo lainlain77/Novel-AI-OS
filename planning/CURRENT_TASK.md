@@ -1,36 +1,36 @@
 # Current Task
 
-Updated: 2026-09-14
-Task-ID: T005
+Updated: 2026-09-15
+Task-ID: T006
 Status: ready
-Title: 百万字长篇 Context Engine 基准与检索消融
+Title: Policy-gated Hybrid Retriever 与语义回归
 
 ## 接手点
 
-T003 已交付 Context/Canon 核心，T004 已交付 Model Adapter、fake、本地 API 和最小作者工作台；14 项测试通过。当前仍只有小 fixture，不能据此宣称百万字召回、延迟或成本达标。
+T005 已用固定 seed 生成 1,072,358 字符、2,131 记录的长篇基准。45/45 精确词法查询通过，60 次禁止项零泄漏，p95 66.762 ms；5 个无共享词同义查询 0/5，证明 FTS5 不能单独承担语义召回。详见 [报告](../docs/quality/LONG_CONTEXT_BENCHMARK_T005.md) 与 ADR-013。
 
 ## 目标与范围
 
-建立可复现的约一百万汉字长篇 fixture 和基准脚本，测量 SQLite 导入、FTS5、Policy Gate、Context Packet、token 预算、跨作品/分支隔离、未来信息阻断和摘要失效。以失败集决定是否加入向量混合检索；不先部署向量库或图数据库。
+实现 Retriever Adapter 与可解释混合融合，在 ADR-010 允许集合内组合 FTS 和 embedding 候选。首轮对比本地可运行方案，记录内容 hash、embedding 模型版本、维度、构建/查询成本和失效；不默认引入独立向量数据库或 GraphRAG。
 
 ## 可立即执行的步骤
 
-1. 生成固定 seed 的章节、场景、人物、线程、Knowledge、秘密、未来揭示、同名污染项和针式事实；记录字符数与记录数。
-2. 把正文块与结构化记录分开，保留 chapter/scene/narrative cursor 和 provenance。
-3. 定义至少 30 个查询的标准答案：must include、must exclude、允许遗漏与任务预算。
-4. 记录数据库体积、构建时间、p50/p95 检索与装配延迟、Recall@k、隔离/泄漏率、来源准确率和预算利用率。
-5. 做 FTS only、较长上下文、摘要启用/失效三组消融；语义失败样本稳定后再实现嵌入 adapter 候选。
-6. 把硬件、Node/SQLite 版本、日期、数据 seed 和命令写入报告；同步 Q002/Q011 和 ADR-011 的适用范围。
+1. 把 NovelStore 的 eligible records 与候选检索接口分离，保持 hard gate 的单一入口。
+2. 定义 LexicalRetriever、EmbeddingRetriever、FusionResult 与每通道 provenance/score。
+3. 选择一个可固定版本的本地 embedding 基线；若需云服务，先完成接口和脱敏/授权路径，再按 Q012 接入。
+4. 扩充 T005 的同义、隐喻、别名、跨章节指代失败集，至少 30 条语义题。
+5. 比较 FTS only、embedding only、hybrid 的 Recall@k、MRR、p50/p95、索引体积与构建时间；所有方案必须保持零泄漏。
+6. 实现内容 hash 与模型版本驱动的向量失效/重建，避免旧 embedding 静默复用。
 
 ## 完成标准
 
-- fixture 可由脚本重建，不提交巨型生成数据库；
-- 文本规模约一百万汉字，包含可定位的困难与禁止样本；
-- 指标、阈值、失败样本和复现命令齐全；
-- 零跨作品/分支/秘密/未来信息泄漏；
-- 对是否需要向量或图扩展给出基于数据的结论；
-- 完整检查、项目状态、交接、Manifest 和路线同步。
+- 新 retriever 看不到 story/branch/audience/cursor gate 之外的记录；
+- FTS fallback 保持可用，离线或 embedding 失败不破坏精确查询；
+- 语义失败集相对 FTS 有明确、可复现的提升；
+- score、通道、模型版本与来源可在 Context Inspector 中解释；
+- 成本与隐私边界记录清楚，不把相似度当 Canon 置信度；
+- 测试、基准、项目记忆和 GitHub 同步通过。
 
 ## 停止条件
 
-若词法基线无法召回同义、隐喻或跨段指代，先固化失败题，再增加可替换 embedding/rerank adapter。不得为了提高 Recall 绕过 ADR-010 的允许集合，也不得把派生摘要当成 Canon。
+若本地 embedding 依赖过重或许可证/供应链不清楚，先保留 adapter、fixture 与比较协议，不下载不明模型。云 embedding 必须由单次任务 grant 控制正文外发；GraphRAG 继续等待多跳关系失败证据。
