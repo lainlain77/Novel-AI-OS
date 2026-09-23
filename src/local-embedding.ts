@@ -20,25 +20,39 @@ export interface LocalEmbeddingOptions {
   dimensions: number;
   batchSize?: number;
   dtype?: "q8" | "fp16" | "fp32";
+  queryInstruction?: string;
 }
+
+export const BGE_ZH_RETRIEVAL_QUERY_INSTRUCTION = "为这个句子生成表示以用于检索相关文章：";
 
 export class LocalTransformersEmbeddingProvider implements EmbeddingProvider {
   readonly id: string;
   readonly dimensions: number;
   private readonly extractor: FeatureExtractor;
   private readonly batchSize: number;
+  private readonly queryInstruction: string;
 
   constructor(options: LocalEmbeddingOptions, extractor: FeatureExtractor) {
     this.dimensions = options.dimensions;
     this.batchSize = options.batchSize ?? 8;
+    this.queryInstruction = options.queryInstruction ?? "";
     this.extractor = extractor;
+    const queryMode = this.queryInstruction
+      ? "query-" + createHash("sha256").update(this.queryInstruction).digest("hex").slice(0, 12)
+      : "query-symmetric";
     this.id = [
       "local-transformers",
       `${options.modelId}@${options.revision}`,
       options.dtype ?? "q8",
       options.weightsSha256.slice(0, 16),
       "cls-normalized",
+      queryMode,
     ].join(":");
+  }
+
+  async embedQuery(text: string): Promise<number[]> {
+    const [vector] = await this.embed([this.queryInstruction + text]);
+    return vector;
   }
 
   async embed(texts: string[]): Promise<number[][]> {
