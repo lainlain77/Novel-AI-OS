@@ -2,7 +2,7 @@
 
 ## 范围
 
-本基准使用仓库内固定的合成中文故事片段，不读取私人小说正文。12 个查询各对应一个目标记录，另有 96 个公开干扰记录；每个查询重复 3 次。作品、分支、作者秘密和未来记录同时进入 fixture，用于检查 Policy Gate 和 provenance。
+本基准使用仓库内固定的合成中文故事片段，不读取私人小说正文。12 个查询各对应一个目标记录，另有 96 个公开干扰记录；每个查询重复 5 次，并同时跑语义改写题和带唯一别名的精确题。作品、分支、作者秘密和未来记录同时进入 fixture，用于检查 Policy Gate 和 provenance。语料来源与许可见 [数据声明](T007_DATA_PROVENANCE.md)。
 
 运行命令：
 
@@ -14,13 +14,16 @@ npm run t007:synthetic-benchmark -- --output benchmarks/results/t007-synthetic-l
 
 ## 结果
 
-| 通道 | Recall@1 | Recall@5 | MRR | p50 | p95 |
+| 查询类型 / 通道 | Recall@1 | Recall@5 | MRR | p50 | p95 |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| SQLite FTS | 0.000 | 0.000 | 0.000 | 约 1.2 ms | 约 2.0 ms |
-| 本地 dense | 1.000 | 1.000 | 1.000 | 约 7.2 ms | 约 8.4 ms |
-| hybrid | 1.000 | 1.000 | 1.000 | 约 7.4 ms | 约 8.3 ms |
+| 语义 / SQLite FTS | 0.000 | 0.000 | 0.000 | 约 1.2 ms | 约 1.4 ms |
+| 语义 / 本地 dense | 1.000 | 1.000 | 1.000 | 约 6.7 ms | 约 7.8 ms |
+| 语义 / hybrid | 1.000 | 1.000 | 1.000 | 约 6.8 ms | 约 8.0 ms |
+| 精确 / SQLite FTS | 1.000 | 1.000 | 1.000 | 约 1.3 ms | 约 1.5 ms |
+| 精确 / 本地 dense | 0.000 | 0.083 | 0.042 | 约 5.7 ms | 约 6.3 ms |
+| 精确 / hybrid | 0.083 | 1.000 | 0.542 | 约 5.9 ms | 约 6.8 ms |
 
-安全检查为：泄漏 0、provenance 错误 0；embedding cache 写入 108 条。完整机器结果见 [JSON 结果](../../benchmarks/results/t007-synthetic-local.json)。
+首次建立 108 条向量耗时约 346 ms，原始向量约 216 KiB；加入一条记录的增量 embedding 约 4.9 ms。安全检查为：泄漏 0、provenance 错误 0。hybrid 在精确题的 Recall@5 与 FTS 持平，但 RRF 会让少数目标不在第 1 名，这个排序边界需要产品侧决定是否增加 lexical exact boost。完整机器结果见 [JSON 结果](../../benchmarks/results/t007-synthetic-local.json)。
 
 ## 解释边界
 
