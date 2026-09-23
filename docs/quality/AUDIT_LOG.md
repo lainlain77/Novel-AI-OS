@@ -134,3 +134,9 @@ P1–P6 未被改变：统一记录、平台外围、题材非架构、能力组
 - `npm test`：20/20 通过；覆盖批处理、CLS + normalize 参数和错误维度拒绝。
 - 权重校验在加载入口执行，远程模型加载关闭；模型文件和私人语料不进入仓库。
 - 结论：T007 工程接入完成，生产语义质量和完整自然语料评测仍开放。
+
+## 2026-09-23 T007 可选本地混合检索入口审计
+
+- 新增 `buildHybridRetriever` 与 `createLocalHybridContextEngine`，保留 FTS fallback，并复用既有 Policy-gated `HybridContextEngine`。
+- `npm test`：21/21 通过；新增测试确认 lexical channel 与 embedding channel 同时存在。
+- 作者工作台默认行为不变；真实模型需显式传入本地目录、revision 和权重 hash。
