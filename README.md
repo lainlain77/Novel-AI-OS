@@ -31,7 +31,7 @@
 
 ## 本地自检
 
-仓库根目录执行 `npm run validate` 可同时检查项目记忆和运行回归；`npm run demo` 查看人物 POV 的 Context Packet；`npm run workbench` 启动本地作者工作台。需要 Node.js 24；不需要安装第三方包。完整编辑器仍在开发中。
+仓库根目录执行 `npm run validate` 可同时检查项目记忆和运行回归；`npm run demo` 查看人物 POV 的 Context Packet；`npm run workbench` 启动本地作者工作台。需要 Node.js 24；核心 fixture 无需外部服务，T007 本地 embedding 需先执行 `npm install`。完整编辑器仍在开发中。
 
 V5 是既有资料中的设计称呼，尚未核实存在 V1–V4 的完整记录或 V5 软件发布。见 [来源登记](memory/SOURCE_REGISTER.md)。
 
