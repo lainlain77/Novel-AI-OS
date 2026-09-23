@@ -10,9 +10,15 @@
     "workbench": "node src/server.ts",
     "benchmark": "node benchmarks/long-context.ts",
     "benchmark:hybrid": "node benchmarks/hybrid-retrieval.ts",
-    "validate": "node scripts/validate-memory.mjs && node --test tests/*.test.ts"
+    "validate": "node scripts/validate-memory.mjs && node --test tests/*.test.ts",
+    "t007:baseline": "node scripts/t007_corpus_baseline.mjs",
+    "t007:embedding-smoke": "node scripts/t007_embedding_smoke.mjs",
+    "t007:retrieval-eval": "node scripts/t007_retrieval_eval.mjs"
   },
   "engines": {
     "node": ">=24"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "3.7.2"
   }
 }
