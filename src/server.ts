@@ -36,7 +36,7 @@ async function route(service: AuthorWorkflowService, request: IncomingMessage, r
   }
   if (request.method === "POST" && url.pathname === "/api/compile") {
     const body = await bodyJson<{ task: TaskContract }>(request);
-    json(response, 200, service.compile(body.task));
+    json(response, 200, await service.compileAsync(body.task));
     return;
   }
   if (request.method === "POST" && url.pathname === "/api/generate") {
@@ -83,3 +83,4 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     console.log(`Novel-AI-OS workbench: http://127.0.0.1:${port}`);
   });
 }
+
