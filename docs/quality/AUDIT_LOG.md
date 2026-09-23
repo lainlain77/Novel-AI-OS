@@ -160,3 +160,11 @@ P1–P6 未被改变：统一记录、平台外围、题材非架构、能力组
 - `scripts/t007_local_server_smoke.mjs` 启动真实本地 provider 和 HTTP 工作台，调用 `/api/compile`、`/api/generate`。
 - 两个 endpoint 均通过本地 hybrid context；draft 请求保持 Canon revision=0，输出未出现受限内容。
 - 该 smoke test 只验证 API 运行链路，不替代自然语料质量、并发和长时间稳定性评估。
+
+
+## 2026-09-23 T007 查询编码与合成语料审计
+
+- `EmbeddingProvider` 支持可选 query encoder；BGE 中文 instruction 只加在查询侧，instruction 指纹纳入 provider ID，避免缓存语义不透明。
+- `npm test`：24/24 通过；覆盖 query instruction 和 query-aware retriever。
+- 合成 fixture：12 个查询、96 个干扰记录、3 次重复；FTS Recall@1=0，真实本地 dense/hybrid Recall@1=1、MRR=1。
+- 安全检查泄漏 0、provenance 错误 0；结果不含私人正文，不能外推为生产自然语料质量。
