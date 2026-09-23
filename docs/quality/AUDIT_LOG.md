@@ -168,3 +168,11 @@ P1–P6 未被改变：统一记录、平台外围、题材非架构、能力组
 - `npm test`：24/24 通过；覆盖 query instruction 和 query-aware retriever。
 - 合成 fixture：12 个查询、96 个干扰记录、3 次重复；FTS Recall@1=0，真实本地 dense/hybrid Recall@1=1、MRR=1。
 - 安全检查泄漏 0、provenance 错误 0；结果不含私人正文，不能外推为生产自然语料质量。
+
+
+## 2026-09-24 T007 稳定性、精确题与增量成本审计
+
+- 合成 fixture 扩展为语义改写题和带唯一别名的精确题，各 5 次重复；语义 dense/hybrid Recall@1=1、MRR=1。
+- 精确题 FTS Recall@5=1，hybrid Recall@5=1；hybrid Recall@1=0.083、MRR=0.542，记录 RRF 可能重排 lexical top-1 的边界，没有把它伪装成完全不回退。
+- 首次建立 108 条 512 维向量约 335 ms、原始向量 221,184 bytes；新增一条记录的增量 embedding 约 4.6 ms。
+- 泄漏 0、provenance 错误 0；测试 fixture 明确声明为项目原创 CC0 数据，不含私人正文。
