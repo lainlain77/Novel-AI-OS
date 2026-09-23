@@ -1,0 +1,54 @@
+{
+  "schema": "novel-ai-os-t007-synthetic-retrieval-v1",
+  "measuredAt": "2026-09-23T13:17:43.030Z",
+  "fixture": {
+    "cases": 12,
+    "distractors": 96,
+    "repeatsPerCase": 3,
+    "records": 112
+  },
+  "model": {
+    "id": "local-transformers:Xenova/bge-small-zh-v1.5@75c43b069aac4d136ba6bc1122f995fedcfd2781:q8:15b717c382bcb518:cls-normalized:query-2bb658b7e092",
+    "revision": "75c43b069aac4d136ba6bc1122f995fedcfd2781",
+    "dimensions": 512,
+    "dtype": "q8",
+    "queryInstruction": "为这个句子生成表示以用于检索相关文章："
+  },
+  "results": {
+    "fts": {
+      "recallAt1": 0,
+      "recallAt5": 0,
+      "mrr": 0,
+      "p50Ms": 1.2292999999999665,
+      "p95Ms": 2.009599999999864,
+      "maxMs": 2.4560000000000173
+    },
+    "dense": {
+      "recallAt1": 1,
+      "recallAt5": 1,
+      "mrr": 1,
+      "p50Ms": 7.193400000000111,
+      "p95Ms": 8.362699999999904,
+      "maxMs": 8.498499999999922
+    },
+    "hybrid": {
+      "recallAt1": 1,
+      "recallAt5": 1,
+      "mrr": 1,
+      "p50Ms": 7.375700000000052,
+      "p95Ms": 8.2654,
+      "maxMs": 8.279899999999998
+    }
+  },
+  "safety": {
+    "leaks": 0,
+    "provenanceErrors": 0,
+    "cacheEntries": 108
+  },
+  "limitations": [
+    "The corpus is synthetic and does not represent private or production novel text.",
+    "Labels are authored with the fixture and are not independent human judgments.",
+    "Metrics are a local pilot; they do not establish general Chinese retrieval quality."
+  ]
+}
+
