@@ -742,6 +742,10 @@
     {
       "path": "src/local-workflow.ts",
       "authority": "tool"
+    },
+    {
+      "path": "scripts/t007_local_workflow_smoke.mjs",
+      "authority": "tool"
     }
   ]
 }
