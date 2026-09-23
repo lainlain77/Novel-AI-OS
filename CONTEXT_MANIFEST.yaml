@@ -762,6 +762,10 @@
     {
       "path": "docs/quality/SYNTHETIC_RETRIEVAL_BENCHMARK_T007.md",
       "authority": "working_record"
+    },
+    {
+      "path": "docs/quality/T007_DATA_PROVENANCE.md",
+      "authority": "working_record"
     }
   ]
 }
