@@ -34,3 +34,17 @@
 仓库根目录执行 `npm run validate` 可同时检查项目记忆和运行回归；`npm run demo` 查看人物 POV 的 Context Packet；`npm run workbench` 启动本地作者工作台。需要 Node.js 24；不需要安装第三方包。完整编辑器仍在开发中。
 
 V5 是既有资料中的设计称呼，尚未核实存在 V1–V4 的完整记录或 V5 软件发布。见 [来源登记](memory/SOURCE_REGISTER.md)。
+
+## T007 本地 embedding 工作流
+
+T007 的真实模型路径保持离线优先：模型权重不提交到 GitHub，运行时也默认关闭远程模型加载。脚本默认从仓库上一级的 `models/bge-small-zh-v1.5` 读取；如果模型在其他位置，先设置本地目录：
+
+```powershell
+$env:LOCAL_EMBEDDING_MODEL_PATH = "C:\\path\\to\\bge-small-zh-v1.5"
+npm install
+npm run t007:embedding-smoke
+npm run t007:workflow-smoke
+npm run t007:server-smoke
+```
+
+加载入口会校验固定 revision、量化权重 hash 和 512 维输出；缺少文件或 hash 不匹配会立即失败，不会改为联网下载。工作流和 HTTP smoke 只使用仓库内 fixture，不读取或上传私人小说正文。
