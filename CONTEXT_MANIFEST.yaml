@@ -730,6 +730,14 @@
     {
       "path": "tests/local-embedding.test.ts",
       "authority": "tool"
+    },
+    {
+      "path": "src/local-retrieval.ts",
+      "authority": "tool"
+    },
+    {
+      "path": "tests/local-retrieval.test.ts",
+      "authority": "tool"
     }
   ]
 }
