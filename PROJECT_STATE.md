@@ -6,7 +6,7 @@ Updated: 2026-09-23
 
 将 Novel-AI-OS 从可接手的架构资料库推进为可运行的 V5 最小产品。Context/Canon、Model Adapter、作者工作台、百万字基准和 Policy-gated Hybrid Retriever 接口已完成，下一步评估真实中文 embedding 与许可小说语料。V5 仍是设计标签，不是已发布软件版本。
 
-当前阶段：Context-Canon Core implemented / Author Workflow implemented / Million-character Benchmark completed / Hybrid Interface implemented / T007 local embedding pilot completed / Production Semantic Evaluation still open。
+当前阶段：Context-Canon Core implemented / Author Workflow implemented / Million-character Benchmark completed / Hybrid Interface implemented / T007 local embedding pilot and synthetic stability expansion completed / Production Semantic Evaluation still open。
 
 ## 已有事实
 
@@ -44,7 +44,7 @@ Updated: 2026-09-23
 
 ## 当前下一步
 
-T007 已完成候选审计、可复核的小型本地中文 embedding 试验入口和隐私边界；下一步扩充不含私人正文的人工标注协议、Policy Gate 泄漏用例和多次运行评测。真实云模型和正文外发策略仍由 Q012 单独决定。
+T007 已完成候选审计、本地中文 embedding 入口、query-aware 编码、合成稳定性/精确题/增量成本基准和隐私边界；下一步仍是明确许可的自然语料与独立人工标注。合成结果不能替代生产质量，真实云模型和正文外发策略仍由 Q012 单独决定。真实云模型和正文外发策略仍由 Q012 单独决定。
 
 全部未决项以 [OPEN_QUESTIONS](planning/OPEN_QUESTIONS.md) 为主记录，路线见 [ROADMAP](planning/ROADMAP.md)。
 
