@@ -84,3 +84,25 @@ test("hybrid retrieval keeps lexical fallback when embedding fails", async () =>
   assert.ok(packet.sections.some((section) => section.recordId === "gu-belief"));
   store.close();
 });
+
+test("embedding retriever uses a provider-specific query encoder when available", async () => {
+  const store = buildT003Fixture();
+  let queryCalls = 0;
+  const provider: EmbeddingProvider = {
+    id: "query-aware-v1",
+    dimensions: 1,
+    async embed(texts) {
+      return texts.map(() => [1]);
+    },
+    async embedQuery(text) {
+      queryCalls++;
+      assert.equal(text, "忠诚");
+      return [1];
+    },
+  };
+  const engine = new HybridContextEngine(store, new EmbeddingRetriever(store, provider));
+  await engine.compile(task("忠诚"));
+  assert.equal(queryCalls, 1);
+  store.close();
+});
+
