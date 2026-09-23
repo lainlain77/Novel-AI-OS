@@ -3,11 +3,11 @@
 ## 2026-09-23 — T007 本地 embedding 评测入口
 
 - 新增可离线运行的中文 embedding smoke test 和 FTS/dense/hybrid 评测脚本。
+- 新增运行时 `LocalTransformersEmbeddingProvider`：权重 hash 校验、远程加载禁用、批处理、归一化 CLS pooling 和版本化 provider ID。
+- 新增 2 项无模型文件的适配器单元测试，项目自动测试增至 20 项。
 - 固定模型 revision、量化方式和本地加载边界；远程模型加载默认关闭。
 - 评测脚本只读取命令行提供的本地语料与题集，私人正文和衍生结果不提交到仓库。
 - T007 仍保持开放：人工标注覆盖、Policy Gate 泄漏、多次运行和完整规模成本待继续验证。
-
-# Changelog
 
 ## 2026-09-15 — T006 Policy-gated Hybrid Retriever
 
