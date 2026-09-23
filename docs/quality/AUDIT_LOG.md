@@ -140,3 +140,9 @@ P1–P6 未被改变：统一记录、平台外围、题材非架构、能力组
 - 新增 `buildHybridRetriever` 与 `createLocalHybridContextEngine`，保留 FTS fallback，并复用既有 Policy-gated `HybridContextEngine`。
 - `npm test`：21/21 通过；新增测试确认 lexical channel 与 embedding channel 同时存在。
 - 作者工作台默认行为不变；真实模型需显式传入本地目录、revision 和权重 hash。
+
+## 2026-09-23 T007 异步作者工作流审计
+
+- `AuthorWorkflowService` 支持可选异步 ContextCompiler；作者工作台 API 的 compile 路径等待异步编译。
+- `createLocalAuthorWorkflowService` 显式组合本地 embedding、HybridContextEngine 和 ModelAdapter，默认 fake 工作台不变。
+- `npm test`：22/22 通过；Canon 仍只通过显式 proposal 流程修改。
