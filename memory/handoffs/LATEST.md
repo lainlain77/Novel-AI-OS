@@ -16,7 +16,7 @@ T006 基准 seed `novel-ai-os-t006-v1`：1,073,770 个主故事字符、2,162 �
 
 新增 4 项测试，总计 18/18 通过。工作台 Context Inspector 已能显示 retrieval channel/model/rank 元数据。
 
-## 限制\n\n当前 pilot 只用于验证运行链路，不关闭生产语义评估；真实模型选择、人工标注覆盖、Policy Gate 泄漏和多次运行仍待扩充。
+## 运行时适配器\n\n`LocalTransformersEmbeddingProvider` 已接入 `EmbeddingProvider` 契约：固定 revision/hash、禁用远程加载、批处理、归一化 CLS pooling 和维度校验。20 项本地测试通过；真实作者工作台仍保持 fake adapter 默认值。\n\n## 限制\n\n当前 pilot 只用于验证运行链路，不关闭生产语义评估；真实模型选择、人工标注覆盖、Policy Gate 泄漏和多次运行仍待扩充。
 
 FixtureConceptEmbeddingProvider 是固定概念映射测试替身，不是生产语义模型。30/30 只证明接口、policy order、cache、融合与回归计算。没有下载外部模型；没有真实小说人工相关性集、模型许可证/hash、真实高维向量成本或云正文外发测试。
 
