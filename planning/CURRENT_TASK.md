@@ -2,7 +2,7 @@
 
 Updated: 2026-09-23
 Task-ID: T007
-Status: pilot_completed_next_expansion
+Status: synthetic_expansion_complete_real_corpus_open
 Title: 生产级中文 Embedding 候选与真实小说语料评估
 
 ## 接手点
@@ -30,6 +30,12 @@ T006 已实现 Policy-gated Retriever/Embedding Adapter、版本化 cache、RRF�
 - hybrid 在真实语义题上相对 FTS 有稳定收益，且精确题与零泄漏不回退；
 - 资源、成本和隐私足以支持产品选择，相关 ADR/问题/文档同步。
 
-## 当前进度\n\n已完成候选模型许可证审计、离线 Transformers.js 接入、量化中文模型 smoke test 和本地检索评测脚本。用户正文与衍生题集仅保留在本地；远端提交不含私人语料、路径、指纹或具体结果。当前试验不足以关闭 T007：需要公开/授权语料或原创人工标注集、Policy Gate 泄漏回归、多次运行和完整规模评测。\n\n## 停止条件
+## 当前进度
+
+已完成候选模型许可证审计、离线 Transformers.js 接入、固定 revision/hash 的本地中文模型、query instruction、异步作者工作流、HTTP smoke 和合成中文检索基准。合成基准覆盖语义/精确查询各 5 次重复、Policy Gate、provenance、构建与增量成本；结果与自然语料严格分开。用户正文与衍生题集仅保留在本地；远端提交不含私人语料、路径或具体私人结果。
+
+当前仍未满足“生产级真实语料”收敛：需要用户自有或明确许可的自然小说式文本、独立人工相关性标注、多次运行分布和 lexical exact boost 是否需要产品决策。没有这些证据，不能关闭 T007，也不能把合成结果称为生产质量。
+
+## 停止条件
 
 没有许可清楚的模型或语料时，保留 T006 adapter 与评估协议，不下载或提交不明文件。未经明确任务授权，不把作者正文或秘密发送到云 embedding 服务。
