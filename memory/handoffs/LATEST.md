@@ -34,6 +34,10 @@ T006 基准 seed `novel-ai-os-t006-v1`：1,073,770 个主故事字符、2,162 �
 
 新增 `scripts/t007_local_server_smoke.mjs`，启动真实本地 provider 和 HTTP 工作台，调用 `/api/compile` 与 `/api/generate`；两条路径均通过本地 hybrid context，draft 仍保持 Canon revision=0。该脚本只验证 API 链路，不代表自然语料质量或并发稳定性。
 
+## T007 查询编码与合成基准
+
+查询 embedding 现在支持 provider-specific query encoder；BGE 中文 instruction 只应用在查询侧，指纹纳入 provider ID，缓存不会把不同查询语义混在一起。新增 `scripts/t007_synthetic_retrieval_benchmark.mjs` 和结果报告：12 个合成目标、96 个干扰记录、3 次重复，FTS Recall@1=0，本地 dense/hybrid Recall@1=1、MRR=1，泄漏和 provenance 错误均为 0。结果仅用于运行链路和合成 fixture 验证，不代表自然小说质量。
+
 ## 限制
 
 当前 pilot 只用于验证运行链路，不关闭生产语义评估；真实模型选择、人工标注覆盖、Policy Gate 泄漏和多次运行仍待扩充。
@@ -48,4 +52,4 @@ FixtureConceptEmbeddingProvider 是固定概念映射测试替身，不是生产
 
 ## 恢复与核验
 
-运行 `npm run validate` 检查结构与 22 项测试；运行 `npm run t007:workflow-smoke` 验证本地模型工作流；运行 `npm run t007:server-smoke` 验证 HTTP endpoint；运行 `npm run benchmark:hybrid -- --output benchmarks/results/t006-local-2026-09-15.json` 重建 T006 结果。任何 provider 都必须只接收 `listEligibleRecords` 的结果。
+运行 `npm run validate` 检查结构与 22 项测试；运行 `npm run t007:workflow-smoke` 验证本地模型工作流；运行 `npm run t007:server-smoke` 验证 HTTP endpoint；运行 `npm run t007:synthetic-benchmark` 重建合成检索结果；运行 `npm run benchmark:hybrid -- --output benchmarks/results/t006-local-2026-09-15.json` 重建 T006 结果。任何 provider 都必须只接收 `listEligibleRecords` 的结果。
