@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-09-23 — T007 本地 embedding 评测入口
+
+- 新增可离线运行的中文 embedding smoke test 和 FTS/dense/hybrid 评测脚本。
+- 固定模型 revision、量化方式和本地加载边界；远程模型加载默认关闭。
+- 评测脚本只读取命令行提供的本地语料与题集，私人正文和衍生结果不提交到仓库。
+- T007 仍保持开放：人工标注覆盖、Policy Gate 泄漏、多次运行和完整规模成本待继续验证。
+
+# Changelog
+
 ## 2026-09-15 — T006 Policy-gated Hybrid Retriever
 
 - 新增 Retriever/Embedding Provider 接口、SQLite 版本化向量缓存、RRF 融合、词法 fallback 和 Context channel provenance。
