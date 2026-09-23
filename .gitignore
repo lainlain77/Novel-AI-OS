@@ -1,0 +1,10 @@
+node_modules/
+.hf-cache/
+models/
+planning/t007-pilot-results.json
+
+planning/t007-baseline-result.json
+planning/t007-user-corpus-manifest.json
+
+.local/
+
