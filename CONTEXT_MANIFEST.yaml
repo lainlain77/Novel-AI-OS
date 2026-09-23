@@ -259,7 +259,7 @@
   ],
   "current_task": {
     "id": "T007",
-    "status": "ready",
+    "status": "pilot_completed_next_expansion",
     "path": "planning/CURRENT_TASK.md"
   },
   "open_questions": {
