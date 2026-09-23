@@ -7,6 +7,7 @@
 - 新增 2 项无模型文件的适配器单元测试，项目自动测试增至 20 项。
 - 新增可选 `createLocalHybridContextEngine` 入口，将本地 embedding 与既有 FTS fallback/RRF 管线组合；新增回归后测试增至 21 项。
 - 新增异步 ContextCompiler 和 `createLocalAuthorWorkflowService`，工作台 compile/generate 可显式使用本地混合检索；测试增至 22 项。
+- 新增真实本地模型端到端 smoke test：检索进入作者工作流，draft 路径保持 Canon revision 不变。
 - 固定模型 revision、量化方式和本地加载边界；远程模型加载默认关闭。
 - 评测脚本只读取命令行提供的本地语料与题集，私人正文和衍生结果不提交到仓库。
 - T007 仍保持开放：人工标注覆盖、Policy Gate 泄漏、多次运行和完整规模成本待继续验证。
