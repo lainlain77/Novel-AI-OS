@@ -10,6 +10,8 @@
 - 新增真实本地模型端到端 smoke test：检索进入作者工作流，draft 路径保持 Canon revision 不变。
 - 查询 embedding 支持 BGE 中文检索 instruction，并把 instruction 指纹写入 provider ID；新增 query-aware 回归。
 - 新增 T007 合成中文检索基准：12 个目标、96 个干扰项、dense/hybrid Recall@1=1，泄漏和 provenance 错误均为 0；结果仅代表合成 fixture。
+- 扩展 T007 基准至语义/精确两类查询和 5 次重复，记录 embedding 构建、增量更新时间与向量体积；精确题 hybrid Recall@5 与 FTS 持平，并记录 RRF top-1 排序边界。
+- 新增 T007 合成 fixture 的 CC0 数据声明；不包含私人正文或第三方语料。
 - 新增 HTTP 工作台 endpoint smoke：`/api/compile` 与 `/api/generate` 均走本地 hybrid provider，draft 路径保持 Canon revision 不变。
 - 固定模型 revision、量化方式和本地加载边界；远程模型加载默认关闭。
 - 评测脚本只读取命令行提供的本地语料与题集，私人正文和衍生结果不提交到仓库。
