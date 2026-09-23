@@ -133,10 +133,10 @@ export function validate(snapshot) {
     check(principleText.includes(`Principle: ${id} `), `Principle missing from normative document: ${id}`);
   }
 
-  const current = snapshot.get(manifest.current_task.path) || '';
+  const current = (snapshot.get(manifest.current_task.path) || '').replace(/\r\n/g, '\n');
   check(current.includes(`Task-ID: ${manifest.current_task.id}\n`), 'Current task ID mismatch');
   check(current.includes(`Status: ${manifest.current_task.status}\n`), 'Current task status mismatch');
-  const handoff = snapshot.get(manifest.latest_handoff) || '';
+  const handoff = (snapshot.get(manifest.latest_handoff) || '').replace(/\r\n/g, '\n');
   check(handoff.includes(`Next-task: ${manifest.current_task.id}\n`), 'Handoff next task mismatch');
   const questions = snapshot.get(manifest.open_questions.path) || '';
   const questionIds = new Set(manifest.open_questions.ids);
