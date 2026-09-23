@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { LocalTransformersEmbeddingProvider } from "../src/local-embedding.ts";
+import {
+  BGE_ZH_RETRIEVAL_QUERY_INSTRUCTION,
+  LocalTransformersEmbeddingProvider,
+} from "../src/local-embedding.ts";
 
 test("local embedding provider batches inputs and requests normalized CLS pooling", async () => {
   const calls: Array<{ texts: string[]; options: unknown }> = [];
@@ -32,5 +35,27 @@ test("local embedding provider rejects a wrong vector dimension", async () => {
     dimensions: 2,
   }, async (texts) => ({ tolist: () => texts.map(() => [1]) }));
   await assert.rejects(() => provider.embed(["text"]), /invalid dimensions/);
+});
+
+test("local embedding provider applies the retrieval instruction only to queries", async () => {
+  const seen: string[] = [];
+  const provider = new LocalTransformersEmbeddingProvider({
+    modelPath: "unused-in-injected-test",
+    modelId: "test-model",
+    revision: "fixed-revision",
+    weightsSha256: "c".repeat(64),
+    dimensions: 2,
+    queryInstruction: BGE_ZH_RETRIEVAL_QUERY_INSTRUCTION,
+  }, async (texts) => {
+    seen.push(...texts);
+    return { tolist: () => texts.map(() => [1, 0]) };
+  });
+  await provider.embed(["普通文档"]);
+  await provider.embedQuery("查找雨夜");
+  assert.deepEqual(seen, [
+    "普通文档",
+    BGE_ZH_RETRIEVAL_QUERY_INSTRUCTION + "查找雨夜",
+  ]);
+  assert.match(provider.id, /query-[0-9a-f]{12}$/);
 });
 
