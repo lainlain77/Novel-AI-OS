@@ -146,3 +146,10 @@ P1–P6 未被改变：统一记录、平台外围、题材非架构、能力组
 - `AuthorWorkflowService` 支持可选异步 ContextCompiler；作者工作台 API 的 compile 路径等待异步编译。
 - `createLocalAuthorWorkflowService` 显式组合本地 embedding、HybridContextEngine 和 ModelAdapter，默认 fake 工作台不变。
 - `npm test`：22/22 通过；Canon 仍只通过显式 proposal 流程修改。
+
+
+## 2026-09-23 T007 端到端本地模型工作流审计
+
+- `scripts/t007_local_workflow_smoke.mjs` 使用固定 revision/hash 的本地量化模型，通过 `createLocalAuthorWorkflowService` 进入作者工作流。
+- smoke test 验证真实 embedding 进入 Policy-gated hybrid context，再生成 draft；Canon revision 保持 0，受限内容未进入输出。
+- 该 smoke test 是运行链路验证，不是自然语料质量结论；生产语义评估仍开放。
