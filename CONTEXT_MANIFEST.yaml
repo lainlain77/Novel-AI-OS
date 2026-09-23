@@ -746,6 +746,10 @@
     {
       "path": "scripts/t007_local_workflow_smoke.mjs",
       "authority": "tool"
+    },
+    {
+      "path": "scripts/t007_local_server_smoke.mjs",
+      "authority": "tool"
     }
   ]
 }
