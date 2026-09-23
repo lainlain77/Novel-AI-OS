@@ -8,6 +8,8 @@
 - 新增可选 `createLocalHybridContextEngine` 入口，将本地 embedding 与既有 FTS fallback/RRF 管线组合；新增回归后测试增至 21 项。
 - 新增异步 ContextCompiler 和 `createLocalAuthorWorkflowService`，工作台 compile/generate 可显式使用本地混合检索；测试增至 22 项。
 - 新增真实本地模型端到端 smoke test：检索进入作者工作流，draft 路径保持 Canon revision 不变。
+- 查询 embedding 支持 BGE 中文检索 instruction，并把 instruction 指纹写入 provider ID；新增 query-aware 回归。
+- 新增 T007 合成中文检索基准：12 个目标、96 个干扰项、dense/hybrid Recall@1=1，泄漏和 provenance 错误均为 0；结果仅代表合成 fixture。
 - 新增 HTTP 工作台 endpoint smoke：`/api/compile` 与 `/api/generate` 均走本地 hybrid provider，draft 路径保持 Canon revision 不变。
 - 固定模型 revision、量化方式和本地加载边界；远程模型加载默认关闭。
 - 评测脚本只读取命令行提供的本地语料与题集，私人正文和衍生结果不提交到仓库。
