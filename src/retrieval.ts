@@ -29,6 +29,7 @@ export interface EmbeddingProvider {
   readonly id: string;
   readonly dimensions: number;
   embed(texts: string[]): Promise<number[][]>;
+  embedQuery?(text: string): Promise<number[]>;
 }
 
 export class SqliteFtsRetriever implements RetrieverAdapter {
@@ -109,7 +110,12 @@ export class EmbeddingRetriever implements RetrieverAdapter {
 
   async retrieve(input: RetrievalInput): Promise<RetrievalCandidate[]> {
     await this.ensureIndexed(input.records);
-    const [queryVector] = await this.provider.embed([input.task.query]);
+    const queryVector = this.provider.embedQuery
+      ? await this.provider.embedQuery(input.task.query)
+      : (await this.provider.embed([input.task.query]))[0];
+    if (!queryVector || queryVector.length !== this.provider.dimensions) {
+      throw new Error("Embedding provider " + this.provider.id + " returned invalid query dimensions");
+    }
     return input.records.map((record) => {
       const contentHash = this.contentHash(record);
       const vector = this.memory.get(`${this.provider.id}\u0000${record.id}\u0000${contentHash}`)!;
@@ -274,3 +280,4 @@ function cosine(a: number[], b: number[]): number {
   }
   return normA && normB ? dot / Math.sqrt(normA * normB) : 0;
 }
+
