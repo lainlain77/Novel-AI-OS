@@ -4,6 +4,7 @@ import { buildT003Fixture } from "../src/fixture.ts";
 import { FakeModelAdapter } from "../src/model.ts";
 import { createWorkbenchServer } from "../src/server.ts";
 import { createLocalAuthorWorkflowService } from "../src/local-workflow.ts";
+import { BGE_ZH_RETRIEVAL_QUERY_INSTRUCTION } from "../src/local-embedding.ts";
 
 const store = buildT003Fixture();
 const modelPath = path.resolve(process.env.LOCAL_EMBEDDING_MODEL_PATH ?? "../models/bge-small-zh-v1.5");
@@ -14,6 +15,7 @@ const { service, provider } = await createLocalAuthorWorkflowService(store, new 
   weightsSha256: "15b717c382bcb518ba457b93ea6850ede7f4f1cd8937454aa06972366cd19bcc",
   dimensions: 512,
   dtype: "q8",
+  queryInstruction: BGE_ZH_RETRIEVAL_QUERY_INSTRUCTION,
 });
 const server = createWorkbenchServer(service);
 server.listen(0, "127.0.0.1");
@@ -67,3 +69,4 @@ try {
   await provider.close();
   store.close();
 }
+
