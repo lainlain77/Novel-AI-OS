@@ -1,12 +1,12 @@
 # Latest Handoff
 
-Updated: 2026-09-15
-Completed-task: T006
-Next-task: T007
+Updated: 2026-09-23
+Completed-task: T007-pilot
+Next-task: T007-expansion
 Target: lainlain77/Novel-AI-OS / main
 Starting-baseline: b5879e06c1fd2a5db4dc88350d8f89a7f3026efd
 
-## 本轮结果
+## 本轮结果\n\nT007 已提交通用评测入口、候选模型许可证说明和本地运行边界。Transformers.js 可加载固定 revision 的中文量化模型；脚本支持本地语料/题集参数、FTS/dense/hybrid、Recall@k、MRR、p95 和向量体积统计。私人正文及衍生题集未进入远端。
 
 T006 实现 `src/retrieval.ts`：RetrieverAdapter、EmbeddingProvider、SqliteFtsRetriever、EmbeddingRetriever、HybridRetriever、HybridContextEngine 和 fixture-only 概念 provider。NovelStore 新增 hard-gated eligible records 入口及 SQLite embedding cache，cache 保存 record/model/content hash/dimensions/source revision。
 
@@ -16,11 +16,11 @@ T006 基准 seed `novel-ai-os-t006-v1`：1,073,770 个主故事字符、2,162 �
 
 新增 4 项测试，总计 18/18 通过。工作台 Context Inspector 已能显示 retrieval channel/model/rank 元数据。
 
-## 限制
+## 限制\n\n当前 pilot 只用于验证运行链路，不关闭生产语义评估；真实模型选择、人工标注覆盖、Policy Gate 泄漏和多次运行仍待扩充。
 
 FixtureConceptEmbeddingProvider 是固定概念映射测试替身，不是生产语义模型。30/30 只证明接口、policy order、cache、融合与回归计算。没有下载外部模型；没有真实小说人工相关性集、模型许可证/hash、真实高维向量成本或云正文外发测试。
 
-## 下一步
+## 下一步\n\n扩充不含私人正文的可授权语料协议和人工答案，补充 access policy/secret leakage 回归，再进行完整规模评测。
 
 执行 [T007](../../planning/CURRENT_TASK.md)：审计许可证清楚的中文/多语 embedding 候选，固定版本与 hash；使用用户自有或明确许可的小说式语料建立人工答案，复跑质量、延迟、体积和失效。没有许可清楚的模型/语料时不下载不明文件，也不把正文发送云端。
 
