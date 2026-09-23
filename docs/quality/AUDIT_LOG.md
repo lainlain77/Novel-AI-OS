@@ -126,3 +126,4 @@ P1–P6 未被改变：统一记录、平台外围、题材非架构、能力组
 百万字基准：主故事 1,073,770 字符，总记录 2,162。FTS 语义 Recall@16=0/30，fixture embedding/hybrid=30/30、MRR=1；FTS/hybrid 精确查询均为 30/30。hybrid p95 63.737 ms，安全泄漏、provenance 错误和解释缺失均为 0。cache 增加 528,384 bytes。
 
 审核边界：`FixtureConceptEmbeddingProvider` 是确定性测试替身。结果只能证明 policy order、接口、缓存、融合和指标流程，不能证明真实中文 embedding 质量。T007 保留许可证、模型 hash 和自然语料验证。
+\n\n## 2026-09-23 T007 运行时适配器审计\n\n- P1–P6：通过。适配器只实现通用 EmbeddingProvider，不改变题材 Kernel、Policy Gate 或 Canon 写入边界。\n- `npm test`：20/20 通过；覆盖批处理、CLS + normalize 参数和错误维度拒绝。\n- 权重校验在加载入口执行，远程模型加载关闭；模型文件和私人语料不进入仓库。\n- 结论：T007 工程接入完成，生产语义质量和完整自然语料评测仍开放。\n
