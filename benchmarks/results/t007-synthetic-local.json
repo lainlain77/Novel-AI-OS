@@ -1,10 +1,10 @@
 {
   "schema": "novel-ai-os-t007-synthetic-retrieval-v1",
-  "measuredAt": "2026-09-23T13:17:43.030Z",
+  "measuredAt": "2026-09-23T18:20:08.962Z",
   "fixture": {
     "cases": 12,
     "distractors": 96,
-    "repeatsPerCase": 3,
+    "repeatsPerCase": 5,
     "records": 112
   },
   "model": {
@@ -14,36 +14,70 @@
     "dtype": "q8",
     "queryInstruction": "为这个句子生成表示以用于检索相关文章："
   },
+  "build": {
+    "embeddingMs": 334.72929999999997,
+    "cacheEntries": 108,
+    "rawVectorBytes": 221184,
+    "incrementalMs": 4.58159999999998,
+    "incrementalEntries": 1
+  },
   "results": {
-    "fts": {
-      "recallAt1": 0,
-      "recallAt5": 0,
-      "mrr": 0,
-      "p50Ms": 1.2292999999999665,
-      "p95Ms": 2.009599999999864,
-      "maxMs": 2.4560000000000173
+    "semantic": {
+      "fts": {
+        "recallAt1": 0,
+        "recallAt5": 0,
+        "mrr": 0,
+        "p50Ms": 1.1381000000000085,
+        "p95Ms": 1.42450000000008,
+        "maxMs": 2.1452000000000453
+      },
+      "dense": {
+        "recallAt1": 1,
+        "recallAt5": 1,
+        "mrr": 1,
+        "p50Ms": 6.239000000000033,
+        "p95Ms": 7.182800000000043,
+        "maxMs": 9.739500000000021
+      },
+      "hybrid": {
+        "recallAt1": 1,
+        "recallAt5": 1,
+        "mrr": 1,
+        "p50Ms": 6.470800000000054,
+        "p95Ms": 7.137100000000146,
+        "maxMs": 8.283099999999877
+      }
     },
-    "dense": {
-      "recallAt1": 1,
-      "recallAt5": 1,
-      "mrr": 1,
-      "p50Ms": 7.193400000000111,
-      "p95Ms": 8.362699999999904,
-      "maxMs": 8.498499999999922
-    },
-    "hybrid": {
-      "recallAt1": 1,
-      "recallAt5": 1,
-      "mrr": 1,
-      "p50Ms": 7.375700000000052,
-      "p95Ms": 8.2654,
-      "maxMs": 8.279899999999998
+    "exact": {
+      "fts": {
+        "recallAt1": 1,
+        "recallAt5": 1,
+        "mrr": 1,
+        "p50Ms": 1.284900000000107,
+        "p95Ms": 1.5207000000000335,
+        "maxMs": 1.7409999999999854
+      },
+      "dense": {
+        "recallAt1": 0,
+        "recallAt5": 0.08333333333333333,
+        "mrr": 0.041666666666666664,
+        "p50Ms": 5.405899999999974,
+        "p95Ms": 6.404999999999973,
+        "maxMs": 6.809400000000096
+      },
+      "hybrid": {
+        "recallAt1": 0.08333333333333333,
+        "recallAt5": 1,
+        "mrr": 0.5416666666666666,
+        "p50Ms": 5.530399999999872,
+        "p95Ms": 6.375800000000027,
+        "maxMs": 16.767499999999927
+      }
     }
   },
   "safety": {
     "leaks": 0,
-    "provenanceErrors": 0,
-    "cacheEntries": 108
+    "provenanceErrors": 0
   },
   "limitations": [
     "The corpus is synthetic and does not represent private or production novel text.",
