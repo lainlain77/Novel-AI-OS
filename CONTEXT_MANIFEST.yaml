@@ -321,14 +321,11 @@
       "docs/architecture/CORE_CONTRACTS.md",
       "docs/technical/VERTICAL_SLICE_T003.md",
       "adr/ADR-010-knowledge-gate.md",
-      "adr/ADR-011-local-storage-retrieval.md"
-      ,
+      "adr/ADR-011-local-storage-retrieval.md",
       "docs/technical/WORKBENCH_T004.md",
-      "adr/ADR-012-model-adapter-boundary.md"
-      ,
+      "adr/ADR-012-model-adapter-boundary.md",
       "docs/quality/LONG_CONTEXT_BENCHMARK_T005.md",
-      "adr/ADR-013-policy-gated-hybrid-retrieval.md"
-      ,
+      "adr/ADR-013-policy-gated-hybrid-retrieval.md",
       "docs/quality/HYBRID_RETRIEVAL_BENCHMARK_T006.md"
     ],
     "planning": [
@@ -364,19 +361,15 @@
       "planning/OPEN_QUESTIONS.md",
       "docs/architecture/V5_MASTER_BLUEPRINT.md",
       "docs/architecture/CORE_CONTRACTS.md",
-      "docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md"
-      ,
+      "docs/research/CONTEXT_ENGINE_RESEARCH_2026-09-09.md",
       "docs/technical/VERTICAL_SLICE_T003.md",
       "adr/ADR-009-canon-transaction.md",
       "adr/ADR-010-knowledge-gate.md",
-      "adr/ADR-011-local-storage-retrieval.md"
-      ,
+      "adr/ADR-011-local-storage-retrieval.md",
       "docs/technical/WORKBENCH_T004.md",
-      "adr/ADR-012-model-adapter-boundary.md"
-      ,
+      "adr/ADR-012-model-adapter-boundary.md",
       "docs/quality/LONG_CONTEXT_BENCHMARK_T005.md",
-      "adr/ADR-013-policy-gated-hybrid-retrieval.md"
-      ,
+      "adr/ADR-013-policy-gated-hybrid-retrieval.md",
       "docs/quality/HYBRID_RETRIEVAL_BENCHMARK_T006.md"
     ],
     "handoff": [
@@ -708,6 +701,26 @@
     },
     {
       "path": "tests/workflow.test.ts",
+      "authority": "tool"
+    },
+    {
+      "path": ".gitignore",
+      "authority": "tool"
+    },
+    {
+      "path": "docs/quality/EMBEDDING_CANDIDATES_T007.md",
+      "authority": "working_record"
+    },
+    {
+      "path": "scripts/t007_corpus_baseline.mjs",
+      "authority": "tool"
+    },
+    {
+      "path": "scripts/t007_embedding_smoke.mjs",
+      "authority": "tool"
+    },
+    {
+      "path": "scripts/t007_retrieval_eval.mjs",
       "authority": "tool"
     }
   ]
