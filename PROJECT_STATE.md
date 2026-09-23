@@ -1,12 +1,12 @@
 # PROJECT STATE
 
-Updated: 2026-09-15
+Updated: 2026-09-23
 
 ## 当前目标与阶段
 
 将 Novel-AI-OS 从可接手的架构资料库推进为可运行的 V5 最小产品。Context/Canon、Model Adapter、作者工作台、百万字基准和 Policy-gated Hybrid Retriever 接口已完成，下一步评估真实中文 embedding 与许可小说语料。V5 仍是设计标签，不是已发布软件版本。
 
-当前阶段：Context-Canon Core implemented / Author Workflow implemented / Million-character Benchmark completed / Hybrid Interface implemented / Production Semantic Evaluation ready。
+当前阶段：Context-Canon Core implemented / Author Workflow implemented / Million-character Benchmark completed / Hybrid Interface implemented / T007 local embedding pilot completed / Production Semantic Evaluation still open。
 
 ## 已有事实
 
@@ -34,7 +34,7 @@ Updated: 2026-09-15
 - reconstructed audit：七技能方法融合；不等于原包逐文件供应链审计。
 - implemented baseline：ADR-008–012、SQLite/FTS5、Context/Canon、Model Adapter、工作台与 14 项测试。
 - measured baseline：T005/T006 百万字合成测试；ADR-013 hybrid 边界已实现，但生产 embedding 与真实语料尚未选择。
-- not implemented：真实模型调用、完整编辑器、内容寻址大文本、平台发布、云同步和完整产品测试。
+- not implemented：真实模型生产选型、完整编辑器、内容寻址大文本、平台发布、云同步和完整产品测试。
 
 ## 尚不能宣称完成
 
@@ -44,7 +44,7 @@ Updated: 2026-09-15
 
 ## 当前下一步
 
-执行 [T007](planning/CURRENT_TASK.md)：审计并验证许可证清楚的本地中文 embedding，建立真实或明确许可的小说式人工相关性语料。真实云模型和正文外发策略仍由 Q012 单独决定。
+T007 已完成候选审计、可复核的小型本地中文 embedding 试验入口和隐私边界；下一步扩充不含私人正文的人工标注协议、Policy Gate 泄漏用例和多次运行评测。真实云模型和正文外发策略仍由 Q012 单独决定。
 
 全部未决项以 [OPEN_QUESTIONS](planning/OPEN_QUESTIONS.md) 为主记录，路线见 [ROADMAP](planning/ROADMAP.md)。
 
