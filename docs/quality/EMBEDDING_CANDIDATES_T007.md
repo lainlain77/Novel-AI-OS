@@ -29,7 +29,7 @@ Status: pilot-completed (本地小模型试验完成，生产质量未验证)
 
 ## 评测协议实现
 
-评测脚本从命令行读取本地语料和本地题集，题集不会随仓库提交；输出仅供本地使用。脚本支持 FTS、dense 和 hybrid 的 Recall@k、MRR、p95、构建耗时及向量体积统计。
+评测脚本从命令行读取本地语料和本地题集，题集不会随仓库提交；输出仅供本地使用。脚本支持 FTS、dense 和 hybrid 的 Recall@k、MRR、p95、构建耗时及向量体积统计。\n\n`src/local-embedding.ts` 实现仓库 `EmbeddingProvider` 接口。加载前校验量化 ONNX 权重 SHA-256，运行时关闭远程模型加载，按批次生成归一化 CLS 向量；模型 revision、dtype、权重 hash 和 pooling 进入 provider ID，从而隔离 SQLite embedding cache。测试使用注入的 extractor，不依赖联网或模型权重。
 
 ## 来源与限制
 
@@ -38,7 +38,7 @@ Status: pilot-completed (本地小模型试验完成，生产质量未验证)
 - BGE-M3 尚未运行；BGE-small 中文量化模型已完成本地试验，不能据此宣称生产质量。
 - 已安装 `@huggingface/transformers@3.7.2` 并新增 `scripts/t007_embedding_smoke.mjs`；2026-09-23 从 Hugging Face 下载 `BAAI/bge-m3` 时连接超时，因此尚未生成向量或权重 hash。网络恢复后可直接运行 `node scripts/t007_embedding_smoke.mjs BAAI/bge-m3` 重试。
 - 为解决下载超时，已通过 PowerShell 分段下载并校验 `Xenova/bge-small-zh-v1.5` 的官方 ONNX 文件（revision `75c43b069aac4d136ba6bc1122f995fedcfd2781`）。本地 smoke test 已通过：3 条中文输入、512 维 Float32 向量；该模型是临时中文基线，不替代 BGE-M3，模型文件被 `.gitignore` 排除。
-- 本地评测结果不随远端提交；生产结论仍需人工标注、access policy/secret leakage 用例和多次运行。
+- 本地评测结果不随远端提交；生产结论仍需人工标注、access policy/secret leakage 用例和多次运行。\n- 运行时适配器已完成单元测试，但作者工作台仍未默认启用真实模型；启用前必须提供本地模型目录和预期权重 hash。
 
 运行检索试验：`npm run t007:retrieval-eval -- <本地UTF-8小说路径> <本地题集JSON路径>`。题集为非空 `[id, query, evidenceAnchor]` 数组，仅在本地保存（建议 `.local/`）；远端不提供小说衍生题集。模型需提前放到 `models/bge-small-zh-v1.5`，脚本禁止远程模型加载。
 
