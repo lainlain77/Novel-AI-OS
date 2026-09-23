@@ -8,20 +8,31 @@ export interface GenerationRun {
   output: ModelOutput;
 }
 
+export interface ContextCompiler {
+  compile(task: TaskContract): ContextPacket | Promise<ContextPacket>;
+}
+
 export class AuthorWorkflowService {
   readonly store: NovelStore;
   readonly model: ModelAdapter;
+  readonly contextCompiler?: ContextCompiler;
 
   constructor(
     store: NovelStore,
     model: ModelAdapter,
+    contextCompiler?: ContextCompiler,
   ) {
     this.store = store;
     this.model = model;
+    this.contextCompiler = contextCompiler;
   }
 
   compile(task: TaskContract): ContextPacket {
     return this.store.compileContext(task);
+  }
+
+  async compileAsync(task: TaskContract): Promise<ContextPacket> {
+    return this.contextCompiler ? await this.contextCompiler.compile(task) : this.compile(task);
   }
 
   async generate(input: {
@@ -30,7 +41,7 @@ export class AuthorWorkflowService {
     outputKind: "draft" | "proposal";
     signal?: AbortSignal;
   }): Promise<GenerationRun> {
-    const packet = this.compile(input.task);
+    const packet = await this.compileAsync(input.task);
     const output = await this.model.generate({
       packet,
       instruction: input.instruction,
@@ -88,3 +99,4 @@ export class AuthorWorkflowService {
     this.store.rejectProposal(proposalId);
   }
 }
+
