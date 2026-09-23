@@ -26,6 +26,7 @@
 | 可运行实现 | [T003 Context/Canon 核心](docs/technical/VERTICAL_SLICE_T003.md)、[T004 作者工作台](docs/technical/WORKBENCH_T004.md)、`src/`、`tests/` |
 | 百万字实测 | [T005 基准报告](docs/quality/LONG_CONTEXT_BENCHMARK_T005.md)、`npm run benchmark` |
 | 混合检索实测 | [T006 基准报告](docs/quality/HYBRID_RETRIEVAL_BENCHMARK_T006.md)、`npm run benchmark:hybrid` |
+| T007 合成模型检索 | [T007 合成基准](docs/quality/SYNTHETIC_RETRIEVAL_BENCHMARK_T007.md)、`npm run t007:synthetic-benchmark` |
 | 机器怎样按需读取 | [Context Manifest](CONTEXT_MANIFEST.yaml) |
 | 如何证明可以接手 | [接手验收](docs/quality/HANDOFF_ACCEPTANCE.md)、[审计记录](docs/quality/AUDIT_LOG.md) |
 
@@ -45,6 +46,7 @@ npm install
 npm run t007:embedding-smoke
 npm run t007:workflow-smoke
 npm run t007:server-smoke
+npm run t007:synthetic-benchmark
 ```
 
 加载入口会校验固定 revision、量化权重 hash 和 512 维输出；缺少文件或 hash 不匹配会立即失败，不会改为联网下载。工作流和 HTTP smoke 只使用仓库内 fixture，不读取或上传私人小说正文。
