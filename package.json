@@ -13,7 +13,8 @@
     "validate": "node scripts/validate-memory.mjs && node --test tests/*.test.ts",
     "t007:baseline": "node scripts/t007_corpus_baseline.mjs",
     "t007:embedding-smoke": "node scripts/t007_embedding_smoke.mjs",
-    "t007:retrieval-eval": "node scripts/t007_retrieval_eval.mjs"
+    "t007:retrieval-eval": "node scripts/t007_retrieval_eval.mjs",
+    "t007:workflow-smoke": "node scripts/t007_local_workflow_smoke.mjs"
   },
   "engines": {
     "node": ">=24"
