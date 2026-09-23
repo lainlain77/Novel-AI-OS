@@ -38,6 +38,19 @@ test("fake model draft sees only the policy-gated packet and cannot change Canon
   store.close();
 });
 
+test("workflow can use an asynchronous context compiler without changing Canon boundaries", async () => {
+  const { store } = setup();
+  const service = new AuthorWorkflowService(store, new FakeModelAdapter(), {
+    async compile(input) {
+      return store.compileContext(input);
+    },
+  });
+  const run = await service.generate({ task: task(), instruction: "异步检索", outputKind: "draft" });
+  assert.equal(run.output.kind, "draft");
+  assert.equal(store.getRevision("story-loop", "main"), 0);
+  store.close();
+});
+
 test("model suggestion becomes Canon only after prepare, save, and explicit apply", async () => {
   const { store, service } = setup();
   const run = await service.generate({ task: task(), instruction: "顾沉决定检查后门", outputKind: "proposal" });
@@ -84,3 +97,4 @@ test("workbench serves UI and policy-inspected API without external services", a
   await once(server, "close");
   store.close();
 });
+
