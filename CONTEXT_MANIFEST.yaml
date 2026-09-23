@@ -722,6 +722,14 @@
     {
       "path": "scripts/t007_retrieval_eval.mjs",
       "authority": "tool"
+    },
+    {
+      "path": "src/local-embedding.ts",
+      "authority": "tool"
+    },
+    {
+      "path": "tests/local-embedding.test.ts",
+      "authority": "tool"
     }
   ]
 }
